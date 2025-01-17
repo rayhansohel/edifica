@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import BrandLogo from "../../assets/logo/edifica-logo.png";
-import NavLinks from "../common/Links/NavLinks";
 import ThemeToggle from "../common/ThemeToggle/ThemeToggle";
 import AuthLogin from "../common/Button/AuthLogin";
+import NavMenu from "../common/Menu/NavMenu";
+import DropdownMenu from "../common/Menu/DropdownMenu";
 
 const Navbar = () => {
   return (
     <div className="px-4 backdrop-blur bg-base-200/50 border-b border-base-300">
       <div className="container mx-auto flex justify-between items-center min-h-12">
-        {/* Brand Logo */}
-        <div className="flex items-center min-w-32">
+        {/* Brand Logo and Mobile Dropdown*/}
+        <div className="flex items-center min-w-32 gap-2">
+          {/* Dorpdown Menu Items */}
+          <div className="md:hidden">
+            <DropdownMenu />
+          </div>
+          {/* Brand Logo */}
           <Link to="/">
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-1">
               <img src={BrandLogo} alt="Brand Logo" className="w-5" />
               <h3 className="uppercase text-lg font-semibold tracking-wider">
                 Edifica
@@ -21,8 +27,8 @@ const Navbar = () => {
         </div>
 
         {/* Menu Items */}
-        <div>
-          <NavLinks />
+        <div className="hidden md:flex">
+          <NavMenu />
         </div>
 
         {/* Auth button */}

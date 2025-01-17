@@ -1,5 +1,5 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -9,6 +9,7 @@ import { AuthContext } from "../../../context/AuthContext";
 const LoginForm = () => {
   const { userLogin, setUser, signInWithGoogle } = useContext(AuthContext);
   const emailRef = useRef();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -34,6 +35,7 @@ const LoginForm = () => {
         const user = result.user;
         setUser(user);
         toast.success("Login with Google successful!");
+        navigate("/");
       })
       .catch(() => {
         toast.error("Google sign-in failed. Try again!");
@@ -66,6 +68,7 @@ const LoginForm = () => {
         const user = result.user;
         setUser(user);
         toast.success("Login successful!");
+        navigate("/");
       })
       .catch(() => {
         toast.error("Invalid email or password");

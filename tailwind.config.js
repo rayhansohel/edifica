@@ -7,9 +7,9 @@ export default {
       'antonio': ["Antonio", "serif"],
     },
     backgroundImage: {
-      hero: "url('https://i.ibb.co.com/dKQGk3K/3.png')",
-      login: "url('https://i.ibb.co.com/p2Cy5qM/login.jpg')",
-      register: "url('https://i.ibb.co.com/Wcht9XT/2177.jpg')",
+      hero: "url(../../src/assets/images/hero.jpg)",
+      login: "url(../../src/assets/images/login.jpg)",
+      register: "url(../../src/assets/images/register.jpg)",
     },
   },
   daisyui: {

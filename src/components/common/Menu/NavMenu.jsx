@@ -7,7 +7,7 @@ import { MdOutlineAlternateEmail } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
 
-const NavLinks = () => {
+const NavMenu = () => {
   const { theme } = useContext(ThemeContext);
 
   const links = [
@@ -31,7 +31,7 @@ const NavLinks = () => {
               }`
             }
           >
-            <div className="w-[32px] h-[32px] border border-base-300 rounded-md flex items-center justify-center">
+            <div className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center">
               {icon}
             </div>
           </NavLink>
@@ -52,4 +52,4 @@ const NavLinks = () => {
   );
 };
 
-export default NavLinks;
+export default NavMenu;
