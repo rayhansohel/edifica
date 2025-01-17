@@ -29,26 +29,37 @@ const HeroSlider = () => {
       const totalSlides = slides.length;
       const nextIndex = (index + totalSlides) % totalSlides;
       setCurrentSlide(nextIndex);
+  
       const targetSlide = sliderRef.current.querySelector(
         `#slide${nextIndex + 1}`
       );
-      targetSlide?.scrollIntoView({ behavior: "smooth" });
+  
+      if (targetSlide) {
+        sliderRef.current.scrollTo({
+          left: targetSlide.offsetLeft,
+          behavior: "smooth",
+        });
+      }
     }
   };
+  
 
   // Auto-slide functionality
   useEffect(() => {
     intervalRef.current = setInterval(() => {
       scrollToSlide(currentSlide + 1);
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
-    return () => clearInterval(intervalRef.current); // Cleanup on unmount
+    return () => clearInterval(intervalRef.current);
   }, [currentSlide, slides]);
 
   return (
     <div className="relative w-full">
       {/* Carousel */}
-      <div ref={sliderRef} className="carousel w-full overflow-hidden rounded-badge">
+      <div
+        ref={sliderRef}
+        className="carousel w-full overflow-hidden rounded-badge"
+      >
         {slides.map((slide, index) => (
           <div
             id={`slide${index + 1}`}
