@@ -6,6 +6,7 @@ import Routes from "./routes/Routes";
 import { ThemeProvider } from "./context/ThemeContext";
 import AuthProvider from "./context/AuthProvider";
 import { HelmetProvider } from "react-helmet-async";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -13,6 +14,10 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <ThemeProvider>
           <RouterProvider router={Routes} />
+          <ToastContainer
+            position="bottom-right"
+            hideProgressBar={true}
+          />
         </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>

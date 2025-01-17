@@ -69,7 +69,7 @@ const AuthLogin = () => {
           {/* Dropdown Menu */}
           {showDropdown && (
             <div
-              className="absolute right-0 top-10 mt-2 bg-base-200 border border-base-300 rounded-lg"
+              className="absolute -right-10 top-10 mt-2 bg-base-200 border border-base-300 rounded-lg"
               style={{ minWidth: "max-content" }}
             >
               <div className="px-4 py-2 flex items-center gap-2">

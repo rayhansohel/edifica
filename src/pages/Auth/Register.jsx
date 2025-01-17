@@ -17,7 +17,7 @@ const Register = () => {
         <Helmet>
           <title>Login - Edifica</title>
         </Helmet>
-        <div className="h-full w-full bg-base-300/50 backdrop-blur flex items-center justify-center">
+        <div className="h-full w-full bg-base-100/20 backdrop-blur flex items-center justify-center">
           <div>
             <RegisterForm />
           </div>

@@ -2,3 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+p {
+    @apply opacity-70;
+  }
+
+.btn {
+    @apply rounded-md;
+}

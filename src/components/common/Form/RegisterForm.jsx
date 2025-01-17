@@ -64,8 +64,8 @@ const RegisterForm = () => {
 
     try {
       await registerWithEmailPassword(email, password, displayName, photoURL);
-      toast.success("Registration successful!");
-      navigate("/auth/login");
+      toast.success("Registration and login successful!");
+      navigate("/");
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         toast.error("Email is already in use. Try a different one.");

@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co.com/Z2r5Bsr/1.png",
+    "alt": "Slide 1",
+    "title": "Streamline Your Building Operations",
+    "paragraph": "Effortlessly manage building tasks and maintenance with intuitive tools designed for single-property management."
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co.com/vz8qBwz/2.png",
+    "alt": "Slide 2",
+    "title": "Enhance Tenant Satisfaction",
+    "paragraph": "Stay connected with tenants, address their concerns promptly, and build stronger relationships for better community living."
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co.com/r2KtVPq/3.png",
+    "alt": "Slide 3",
+    "title": "Simplify Maintenance Requests",
+    "paragraph": "Log, track, and resolve maintenance issues quickly and efficiently with our user-friendly platform."
+  },
+  {
+    "id": 4,
+    "image": "https://i.ibb.co.com/t8qfmzB/4.png",
+    "alt": "Slide 4",
+    "title": "Centralized Information Access",
+    "paragraph": "Access building data, reports, and key insights all in one place, designed for effortless management."
+  }
+]
+
