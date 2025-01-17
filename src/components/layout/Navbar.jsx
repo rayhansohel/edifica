@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import BrandLogo from "../../assets/logo/edifica-logo.png";
 import NavLinks from "../common/Links/NavLinks";
 import ThemeToggle from "../common/ThemeToggle/ThemeToggle";
+import AuthLogin from "../common/Button/AuthLogin";
 
 const Navbar = () => {
   return (
@@ -26,7 +27,7 @@ const Navbar = () => {
 
         {/* Auth button */}
         <div className="min-w-32 flex justify-end items-center">
-
+          <AuthLogin />
           {/* Theme Toggle */}
           <ThemeToggle />
         </div>
