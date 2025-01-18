@@ -10,7 +10,7 @@ const SectionTitle = ({ title, subtitle, showIcon = true }) => {
       <div className="flex items-center justify-center w-full gap-4 mt-2">
         {showIcon && <TfiLayoutLineSolid className="text-xl" />}
         {showIcon && <GoNorthStar className="text-xl" />}
-        <h1 className="text-4xl uppercase text-accent">{title}</h1>
+        <h1 className="text-2xl sm:text-4xl uppercase text-accent">{title}</h1>
         {showIcon && <GoNorthStar className="text-xl" />}
         {showIcon && <TfiLayoutLineSolid className="text-xl" />}
       </div>

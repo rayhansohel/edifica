@@ -10,7 +10,7 @@ const MainLayout = () => {
         {/* load navvar here*/}
         <Navbar />
       </div>
-      <div className="min-h-[calc(100vh-129px)] py-4">
+      <div className="min-h-[calc(100vh-344px)]">
         {/* load pages here */}
         <Outlet />
       </div>

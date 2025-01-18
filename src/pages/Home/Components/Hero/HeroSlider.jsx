@@ -54,7 +54,7 @@ const HeroSlider = () => {
   }, [currentSlide, slides]);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mt-8">
       {/* Carousel */}
       <div
         ref={sliderRef}

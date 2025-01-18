@@ -8,18 +8,8 @@ const OurLocation = () => {
         title="Our Location"
         subtitle="Find us in the heart of the city"
       />
-      <div className="container mx-auto px-4 mt-8">
-        <div className="flex flex-col gap-8 items-center justify-center">
-
-          {/* Address*/}
-          <div className="border border-base-300 p-6 rounded-3xl hover:bg-base-200 transition-color duration-300 ease-in-out w-60">
-            <h3 className="text-md uppercase font-semibold mb-2">
-              Appartment Address
-            </h3>
-            <p>Sector-13, Uttara, Dhaka</p>
-            <p>Bangladesh-1230</p>
-          </div>
-
+      <div className="container mx-auto px-4 mt-4">
+        <div className="flex flex-col gap-4 items-center justify-center">
           <div className="max-w-4xl text-justify">
             <p>
               Located in the vibrant neighborhood of Sector 13, Uttara, our
