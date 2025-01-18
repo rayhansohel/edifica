@@ -5,7 +5,7 @@ import { TfiLayoutLineSolid } from "react-icons/tfi";
 
 const SectionTitle = ({ title, subtitle, showIcon = true }) => {
   return (
-    <div className="w-full text-center flex items-center flex-col">
+    <div className="w-full text-center flex items-center flex-col pb-4">
       <h3 className="uppercase">{subtitle}</h3>
       <div className="flex items-center justify-center w-full gap-4 mt-2">
         {showIcon && <TfiLayoutLineSolid className="text-xl" />}

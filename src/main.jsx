@@ -7,17 +7,24 @@ import { ThemeProvider } from "./context/ThemeContext";
 import AuthProvider from "./context/AuthProvider";
 import { HelmetProvider } from "react-helmet-async";
 import { ToastContainer } from "react-toastify";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a new instance of QueryClient
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>
       <AuthProvider>
         <ThemeProvider>
-          <RouterProvider router={Routes} />
-          <ToastContainer
-            position="bottom-right"
-            hideProgressBar={true}
-          />
+          {/* Wrap your app with QueryClientProvider */}
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={Routes} />
+            <ToastContainer
+              position="bottom-right"
+              hideProgressBar={true}
+            />
+          </QueryClientProvider>
         </ThemeProvider>
       </AuthProvider>
     </HelmetProvider>

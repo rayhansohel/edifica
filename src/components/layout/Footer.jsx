@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="min-h-20 bg-base-200 border-t border-base-300 pt-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-          <div className="min-h-40 rounded-box border border-base-300 p-6 space-y-2">
+          <div className="min-h-40 rounded-badge border border-base-300 p-6 space-y-2">
             <Link to="/">
               <div className="flex items-center gap-2">
                 <img src={BrandLogo} alt="Brand Logo" className="w-10" />
@@ -29,14 +29,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 rounded-box">
+          <div className="min-h-40 border border-base-300 p-6 rounded-badge">
             <h3 className="uppercase mb-2">Page Links</h3>
             <div>
               <FooterMenu />
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 space-y-2 rounded-box">
+          <div className="min-h-40 border border-base-300 p-6 space-y-2 rounded-badge">
             <h3 className="uppercase mb-2">Contact Info</h3>
             <div className="flex items-center gap-2 ">
               <div className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center">
@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 rounded-box">
+          <div className="min-h-40 border border-base-300 p-6 rounded-badge">
             <h3 className="uppercase mb-2">Newsleter</h3>
             <p>
               Subscribe to our newsletter and stay updated with the property
@@ -77,7 +77,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
-          <div className="h-10 w-full px-2 border border-base-300 rounded-lg flex justify-center items-center">
+          <div className="h-10 w-full px-2 border border-base-300 rounded-xl flex justify-center items-center">
             <p>
               <Link to="/" className="text-accent font-semibold">
                 Edifica
