@@ -1,4 +1,5 @@
 import AboutBuilding from "./Components/AboutSection/AboutBuilding";
+import OurLocation from "./Components/ContactSection/OurLocation";
 import Hero from "./Components/Hero/Hero";
 
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
         <div>
             <Hero/>
             <AboutBuilding/>
+            <OurLocation/>
         </div>
     );
 };

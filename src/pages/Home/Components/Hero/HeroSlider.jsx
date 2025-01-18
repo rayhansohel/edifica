@@ -79,7 +79,7 @@ const HeroSlider = () => {
                     {slide.title}
                   </h2>
                   <p className="text-md">{slide.paragraph}</p>
-                  <Link to="/reviews">
+                  <Link to="/apartment">
                     <button className="btn btn-sm mt-4 btn-accent text-white border-none shadow-none">
                       Explore More
                     </button>
