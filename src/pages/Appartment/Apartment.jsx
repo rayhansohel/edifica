@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { Helmet } from "react-helmet-async";
 
 const Apartment = () => {
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
@@ -90,6 +91,10 @@ const Apartment = () => {
 
   return (
     <div className="container mx-auto px-4 py-6 md:py-20">
+      <Helmet>
+        <title>Apartment- Edifica</title>
+      </Helmet>
+
       <SectionTitle
         title="All Apartments"
         subtitle="Choose your Dream Apartment"

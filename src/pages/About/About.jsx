@@ -5,6 +5,7 @@ import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import Marquee from "react-fast-marquee";
 import ThemeContext from "../../context/ThemeContext";
 import Faqs from "../../components/common/Faq/Faqs";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
   const [apartments, setApartments] = useState([]);
@@ -33,6 +34,9 @@ const About = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>About- Edifica</title>
+      </Helmet>
       <div>
         {/* Section 1: About Building */}
         <section className="py-8 md:py-20">
