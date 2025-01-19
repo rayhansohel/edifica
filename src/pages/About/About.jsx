@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import Iframe from "react-iframe";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import Marquee from "react-fast-marquee";
 import ThemeContext from "../../context/ThemeContext";
