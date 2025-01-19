@@ -1,3 +1,5 @@
+<img src="src/assets/logo/edifica-logo.png" alt="Carvex Logo" width="100px"> EDIFICA
+
 # EDIFICA
 # A Building Management System
 
@@ -5,7 +7,7 @@
 This project, **Edifica**, is a comprehensive Building Management System (BMS) designed for a single building. It provides user-friendly interfaces for users, members, and administrators to manage apartments, agreements, payments, and announcements effectively.
 
 ## Live Site URL
-[Live Site](https://edificaa.netlify.app/contact)
+[Live Site](https://edificaa.netlify.app)
 
 ## Key Features
 1. **Responsive Design**: Fully responsive and works seamlessly on mobile, tablet, and desktop devices.
