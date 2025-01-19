@@ -1,4 +1,4 @@
-<img src="src/assets/logo/edifica-logo.png" alt="Carvex Logo" width="100px"> EDIFICA
+<img src="src/assets/logo/edifica-logo.png" alt="Carvex Logo" width="50px">
 
 # EDIFICA
 # A Building Management System
