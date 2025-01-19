@@ -17,7 +17,6 @@ const Apartment = () => {
     data: apartments,
     error,
     isLoading,
-    refetch,
   } = useQuery({
     queryKey: ["apartments", rentRange, currentPage],
     queryFn: async () => {
@@ -29,11 +28,6 @@ const Apartment = () => {
     },
     refetchOnWindowFocus: false,
   });
-
-  const handleSearch = () => {
-    setCurrentPage(1);
-    refetch();
-  };
 
   const handleAgreement = async (apartment) => {
     const token = localStorage.getItem("authToken");
@@ -79,16 +73,16 @@ const Apartment = () => {
 
   if (isLoading)
     return (
-      <div className="p-4 container mx-auto w-full">
-        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center border border-base-300 rounded-badge">
+      <div className="container mx-auto w-full">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
           Loading apartments...
         </div>
       </div>
     );
   if (error)
     return (
-      <div className="p-4 container mx-auto w-full ">
-        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center border border-base-300 rounded-badge">
+      <div className="container mx-auto w-full ">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
           Error loading apartments.
         </div>
       </div>
@@ -102,38 +96,44 @@ const Apartment = () => {
       />
 
       {/* Rent Range Search */}
-      <div className="flex items-center justify-center gap-4 my-6">
-        <div className="space-x-2">
-          <label htmlFor="minRent" className="text-sm mb-2">
-            Min
-          </label>
-          <input
-            type="number"
-            placeholder="Min Rent"
-            value={rentRange.min}
-            onChange={(e) =>
-              setRentRange({ ...rentRange, min: e.target.value })
-            }
-            className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
-          />
+      <div className=" my-4">
+        <h3 className="text-lg text-center mb-2">Filter by Rent</h3>
+        <div className="flex items-center justify-center gap-4">
+          <div className="space-x-2">
+            <label htmlFor="minRent" className="text-sm mb-2">
+              Min
+            </label>
+            <input
+              type="number"
+              placeholder="Min Rent"
+              value={rentRange.min}
+              onChange={(e) =>
+                setRentRange({ ...rentRange, min: e.target.value })
+              }
+              className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
+            />
+          </div>
+          <div className="space-x-2">
+            <label htmlFor="minRent" className="text-sm mb-2">
+              Max
+            </label>
+            <input
+              type="number"
+              placeholder="Max Rent"
+              value={rentRange.max}
+              onChange={(e) =>
+                setRentRange({ ...rentRange, max: e.target.value })
+              }
+              className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
+            />
+          </div>
+          <button
+            onClick={handleClearSearch}
+            className="btn btn-sm btn-primary"
+          >
+            Clear
+          </button>
         </div>
-        <div className="space-x-2">
-          <label htmlFor="minRent" className="text-sm mb-2">
-            Max
-          </label>
-          <input
-            type="number"
-            placeholder="Max Rent"
-            value={rentRange.max}
-            onChange={(e) =>
-              setRentRange({ ...rentRange, max: e.target.value })
-            }
-            className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
-          />
-        </div>
-        <button onClick={handleClearSearch} className="btn btn-sm btn-primary">
-          Clear
-        </button>
       </div>
 
       {/* Apartments */}
