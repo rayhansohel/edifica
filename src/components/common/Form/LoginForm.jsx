@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef, useState } from "react";
 import { toast } from "react-toastify";
@@ -7,9 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../context/AuthContext";
 
 const LoginForm = () => {
-  const { userLogin, setUser, signInWithGoogle } = useContext(AuthContext);
-  const emailRef = useRef();
+  const { userLogin, signInWithGoogle } = useContext(AuthContext);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
+
+  const emailRef = useRef();
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -33,9 +39,9 @@ const LoginForm = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        setUser(user);
+        console.log(user);
         toast.success("Login with Google successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.error("Google sign-in failed. Try again!");
@@ -66,9 +72,9 @@ const LoginForm = () => {
     userLogin(email, password)
       .then((result) => {
         const user = result.user;
-        setUser(user);
+        console.log(user);
         toast.success("Login successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.error("Invalid email or password");
@@ -135,10 +141,7 @@ const LoginForm = () => {
           <div className=" text-center">
             <p>
               Don't have an Account?{" "}
-              <Link
-                to="/auth/register"
-                className="font-semibold text-accent"
-              >
+              <Link to="/auth/register" className="font-semibold text-accent">
                 Register
               </Link>
             </p>

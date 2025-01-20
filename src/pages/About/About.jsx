@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 
 const About = () => {
   const [apartments, setApartments] = useState([]);
-  const { theme } = useContext(ThemeContext); // Get the current theme
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchApartments = async () => {

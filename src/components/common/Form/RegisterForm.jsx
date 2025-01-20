@@ -1,13 +1,18 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../../context/AuthContext";
 
 const RegisterForm = () => {
-  const { registerWithEmailPassword, setUser, signInWithGoogle } = useContext(AuthContext);
+  const { registerWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
+
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -64,8 +69,8 @@ const RegisterForm = () => {
 
     try {
       await registerWithEmailPassword(email, password, displayName, photoURL);
-      toast.success("Registration and login successful!");
-      navigate("/");
+      toast.success("Registration successful!");
+      navigate(from, { replace: true });
     } catch (err) {
       if (err.code === "auth/email-already-in-use") {
         toast.error("Email is already in use. Try a different one.");
@@ -79,9 +84,9 @@ const RegisterForm = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        setUser(user);
+        console.log(user);
         toast.success("Login with Google successful!");
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch(() => {
         toast.error("Google sign-in failed. Try again!");

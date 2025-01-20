@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { CiMail } from "react-icons/ci";
 import { FiPhone } from "react-icons/fi";
 import { IoLocationOutline } from "react-icons/io5";
-import SocialLinks from "../../components/common/SocialLinks/SocialLinks";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 
 const Contact = () => {
@@ -20,7 +19,7 @@ const Contact = () => {
           <div className="flex flex-col md:flex-row gap-4 justify-between md:items-center">
             {/* Email */}
             <div className="flex gap-4 items-center">
-              <div className="w-20 h-20 rounded-xl bg-base-200 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-xl border border-base-300 flex items-center justify-center">
                 <CiMail className="text-3xl" />
               </div>
               <div className="flex flex-col">
@@ -37,7 +36,7 @@ const Contact = () => {
             </div>
             {/* Phone */}
             <div className="flex gap-4 items-center">
-              <div className="w-20 h-20 rounded-xl bg-base-200 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-xl border border-base-300 flex items-center justify-center">
                 <FiPhone className="text-3xl" />
               </div>
               <div className="flex flex-col">
@@ -55,7 +54,7 @@ const Contact = () => {
 
             {/* Location */}
             <div className="flex gap-4 items-center">
-              <div className="w-20 h-20 rounded-xl bg-base-200 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-xl border border-base-300 flex items-center justify-center">
                 <IoLocationOutline className="text-3xl" />
               </div>
               <div className="flex flex-col">
@@ -69,8 +68,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="col-span-1 md:col-span-2 bg-base-200 p-6 rounded-3xl">
-          <h3 className="mb-4 uppercase">Send Message</h3>
+        <div className="col-span-1 md:col-span-2 border border-base-300 p-8 rounded-badge">
           <form>
             <div className="space-y-4">
               <div>
@@ -103,9 +101,14 @@ const Contact = () => {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-sm btn-primary">
-                Send Message
-              </button>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="btn btn-sm btn-primary"
+                >
+                  Send Message
+                </button>
+              </div>
             </div>
           </form>
         </div>

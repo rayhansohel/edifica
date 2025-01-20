@@ -47,7 +47,6 @@ const AuthProvider = ({ children }) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
 
-      // Update profile with name and photoURL
       await updateProfile(result.user, { displayName, photoURL });
       setUser({ ...result.user, displayName, photoURL });
 

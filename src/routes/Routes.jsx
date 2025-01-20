@@ -4,14 +4,15 @@ import Error404 from "../pages/Error/Error404";
 import Home from "../pages/home/Home";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
-import Apartment from "../pages/Appartment/Apartment";
+import Apartment from "../pages/Apartment/Apartment";
 import AuthLayout from "../components/layout/AuthLayout";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
-
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 const Routes = createBrowserRouter([
-
   //Main route
   {
     path: "/",
@@ -54,6 +55,21 @@ const Routes = createBrowserRouter([
     ],
   },
 
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    // errorElement: <Error404 />,
+    children: [
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+    ],
+  },
 ]);
 
 export default Routes;

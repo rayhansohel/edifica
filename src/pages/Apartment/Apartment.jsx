@@ -1,25 +1,23 @@
-/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useNavigate, useLocation } from "react-router-dom";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/animations/Loading.json";
 
 const Apartment = () => {
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Fetch apartments data
-  const {
-    data: apartments,
-    error,
-    isLoading,
-  } = useQuery({
+  const { data: apartments, error, isLoading } = useQuery({
     queryKey: ["apartments", rentRange, currentPage],
     queryFn: async () => {
       const res = await axios.get(
@@ -34,28 +32,38 @@ const Apartment = () => {
   const handleAgreement = async (apartment) => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      navigate("/auth/login");
+      navigate("/auth/login", { state: { from: location }, replace: true });
       return;
     }
 
     try {
       const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      await axios.post(
-        "/api/agreements",
-        {
-          userName: userInfo.name,
-          userEmail: userInfo.email,
-          floorNo: apartment.floorNo,
-          blockName: apartment.blockName,
-          apartmentNo: apartment.apartmentNo,
-          rent: apartment.rent,
-          status: "pending",
-        },
+      const payload = {
+        userName: userInfo.name,
+        userEmail: userInfo.email,
+        floorNo: apartment.floorNo,
+        blockName: apartment.blockName,
+        apartmentNo: apartment.apartmentNo,
+        rent: apartment.rent,
+        status: "pending",
+      };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/agreements",
+        payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      toast.success("Agreement request submitted successfully!");
+
+      if (response.status === 201) {
+        toast.success("Agreement request submitted successfully!");
+      } else {
+        toast.error("Error submitting agreement. Please try again.");
+      }
     } catch (error) {
-      toast.error("Error submitting agreement. Please try again.");
+      toast.error(
+        
+        error.response?.data?.message || "Error submitting agreement. Please try again."
+      );
     }
   };
 
@@ -77,7 +85,7 @@ const Apartment = () => {
     return (
       <div className="container mx-auto w-full">
         <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          Loading apartments...
+        <Lottie animationData={loadingAnimation} className="w-32" />
         </div>
       </div>
     );
@@ -102,7 +110,7 @@ const Apartment = () => {
       />
 
       {/* Rent Range Search */}
-      <div className=" my-4">
+      <div className="my-4">
         <h3 className="text-lg text-center mb-2">Filter by Rent</h3>
         <div className="flex items-center justify-center gap-4">
           <div className="space-x-2">
@@ -114,7 +122,7 @@ const Apartment = () => {
               placeholder="Min Rent"
               value={rentRange.min}
               onChange={(e) =>
-                setRentRange({ ...rentRange, min: e.target.value })
+                setRentRange({ ...rentRange, min: +e.target.value }) 
               }
               className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
             />
@@ -128,15 +136,12 @@ const Apartment = () => {
               placeholder="Max Rent"
               value={rentRange.max}
               onChange={(e) =>
-                setRentRange({ ...rentRange, max: e.target.value })
+                setRentRange({ ...rentRange, max: +e.target.value }) // Ensure max is a number
               }
               className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
             />
           </div>
-          <button
-            onClick={handleClearSearch}
-            className="btn btn-sm btn-primary"
-          >
+          <button onClick={handleClearSearch} className="btn btn-sm btn-primary">
             Clear
           </button>
         </div>
