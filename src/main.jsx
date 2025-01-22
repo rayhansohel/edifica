@@ -6,8 +6,9 @@ import Routes from "./routes/Routes";
 import { ThemeProvider } from "./context/ThemeContext";
 import AuthProvider from "./context/AuthProvider";
 import { HelmetProvider } from "react-helmet-async";
-import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+
 
 // Create a new instance of QueryClient
 const queryClient = new QueryClient();
@@ -17,13 +18,9 @@ createRoot(document.getElementById("root")).render(
     <HelmetProvider>
       <AuthProvider>
         <ThemeProvider>
-          {/* Wrap your app with QueryClientProvider */}
           <QueryClientProvider client={queryClient}>
             <RouterProvider router={Routes} />
-            <ToastContainer
-              position="bottom-right"
-              hideProgressBar={true}
-            />
+            <Toaster position="bottom-right" reverseOrder={false} />
           </QueryClientProvider>
         </ThemeProvider>
       </AuthProvider>

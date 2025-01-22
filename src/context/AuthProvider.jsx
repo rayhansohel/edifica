@@ -42,10 +42,19 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const registerWithEmailPassword = async (email, password, displayName, photoURL) => {
+  const registerWithEmailPassword = async (
+    email,
+    password,
+    displayName,
+    photoURL
+  ) => {
     setError(null);
     try {
-      const result = await createUserWithEmailAndPassword(auth, email, password);
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
       await updateProfile(result.user, { displayName, photoURL });
       setUser({ ...result.user, displayName, photoURL });

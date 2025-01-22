@@ -1,12 +1,13 @@
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const RegisterForm = () => {
-  const { registerWithEmailPassword, signInWithGoogle } = useContext(AuthContext);
+  const { registerWithEmailPassword, signInWithGoogle } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -102,7 +103,7 @@ const RegisterForm = () => {
           className="btn btn-sm bg-base-100 shadow-none"
         >
           <FcGoogle className="text-lg" />
-          <span>Sign-In with Google</span>
+          <span>Login with Google</span>
         </button>
       </div>
       <div className="flex w-full flex-col px-9 mt-4 -mb-4">
@@ -164,14 +165,14 @@ const RegisterForm = () => {
           />
         </div>
         <div className="form-control mt-6">
-          <button type="submit" className="btn btn-sm btn-primary">
+          <button type="submit" className="btn btn-sm btn-accent">
             Register
           </button>
         </div>
         <div className=" text-center">
           <p>
             Already have an account?{" "}
-            <Link to="/auth/login" className="font-semibold text-accent">
+            <Link to="/login" className="font-semibold text-accent">
               Login
             </Link>
           </p>

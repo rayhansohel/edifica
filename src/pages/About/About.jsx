@@ -1,35 +1,49 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import Marquee from "react-fast-marquee";
 import ThemeContext from "../../context/ThemeContext";
 import Faqs from "../../components/common/Faq/Faqs";
 import { Helmet } from "react-helmet-async";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../assets/animations/Loading.json";
+
+const fetchApartments = async () => {
+  const response = await axios.get("http://localhost:5000/all-apartments");
+  return response.data;
+};
 
 const About = () => {
-  const [apartments, setApartments] = useState([]);
   const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    const fetchApartments = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/all-apartments"
-        );
-        const data = response.data;
+  // Use TanStack Query to fetch apartments data
+  const {
+    data: apartments = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["apartments"],
+    queryFn: fetchApartments, 
+  });
 
-        if (Array.isArray(data)) {
-          setApartments(data);
-        } else {
-          console.error("Fetched data is not an array:", data);
-        }
-      } catch (error) {
-        console.error("Error fetching apartments:", error);
-      }
-    };
+  if (isLoading)
+    return (
+      <div className="container mx-auto w-full">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
+          <Lottie animationData={loadingAnimation} className="w-32" />
+        </div>
+      </div>
+    );
 
-    fetchApartments();
-  }, []);
+  if (error)
+    return (
+      <div className="container mx-auto w-full ">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
+          Error loading apartments.
+        </div>
+      </div>
+    );
 
   return (
     <div>
@@ -50,7 +64,7 @@ const About = () => {
                 <img
                   src="https://i.ibb.co.com/qCv0PB3/about.jpg"
                   alt="about us"
-                  className="object-cover h-full w-full hover:scale-110 transition-transform duration-700 ease-in-out"
+                  className="object-cover h-full w-full min-h-80 hover:scale-110 transition-transform duration-700 ease-in-out"
                 />
               </div>
               <div>
@@ -71,7 +85,7 @@ const About = () => {
                       Sustainable Design
                     </h3>
                     <p>
-                      Equipped with eco-friendly, building is designed to
+                      Equipped with eco-friendly materials, building is designed to
                       minimize environmental impact while maximizing efficiency.
                     </p>
                   </div>
@@ -119,7 +133,7 @@ const About = () => {
                 {apartments.map((apartment) => (
                   <a
                     key={apartment._id}
-                    href={`/apartments/${apartment._id}`}
+                    href={`/apartment/${apartment._id}`}
                     className="block mx-4"
                   >
                     <img
@@ -138,7 +152,7 @@ const About = () => {
           )}
         </section>
 
-        {/* Section 3: FAQs*/}
+        {/* Section 3: FAQs */}
         <section>
           <Faqs />
         </section>

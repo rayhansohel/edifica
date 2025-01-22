@@ -110,7 +110,7 @@ const AuthLogin = () => {
         </div>
       ) : (
         <Link
-          to="/auth/login"
+          to="/login"
           data-tooltip-id="login-tooltip"
           data-tooltip-content="Login"
           className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center"

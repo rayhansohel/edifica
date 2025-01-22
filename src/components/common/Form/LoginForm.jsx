@@ -3,9 +3,8 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef, useState } from "react";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const { userLogin, signInWithGoogle } = useContext(AuthContext);
@@ -134,14 +133,14 @@ const LoginForm = () => {
             )}
           </div>
           <div className="form-control mt-6">
-            <button type="submit" className="btn btn-sm btn-primary">
+            <button type="submit" className="btn btn-sm btn-accent">
               <span>Login</span>
             </button>
           </div>
           <div className=" text-center">
             <p>
               Don't have an Account?{" "}
-              <Link to="/auth/register" className="font-semibold text-accent">
+              <Link to="/register" className="font-semibold text-accent">
                 Register
               </Link>
             </p>

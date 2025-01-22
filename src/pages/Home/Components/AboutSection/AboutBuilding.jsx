@@ -9,7 +9,7 @@ const AboutBuilding = () => {
         <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="rounded-badge overflow-hidden">
             <img
-              src="https://i.ibb.co.com/KFRjY0z/register.jpg"
+              src="https://i.ibb.co.com/vJYVJ31/about-section.jpg"
               alt="about us"
               className="object-cover h-full hover:scale-110 transition-transform duration-700 ease-in-out"
             />

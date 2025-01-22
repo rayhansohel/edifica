@@ -40,16 +40,16 @@ const Routes = createBrowserRouter([
 
   //Auth route
   {
-    path: "/auth",
+    path: "",
     element: <AuthLayout />,
     // errorElement: <Error404 />,
     children: [
       {
-        path: "login",
+        path: "/login",
         element: <Login />,
       },
       {
-        path: "register",
+        path: "/register",
         element: <Register />,
       },
     ],

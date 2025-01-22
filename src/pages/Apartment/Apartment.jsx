@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
-import { toast } from "react-toastify";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../assets/animations/Loading.json";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Apartment = () => {
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
@@ -15,13 +17,20 @@ const Apartment = () => {
   const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   // Fetch apartments data
-  const { data: apartments, error, isLoading } = useQuery({
+  const {
+    data: apartments,
+    error,
+    isLoading,
+  } = useQuery({
     queryKey: ["apartments", rentRange, currentPage],
     queryFn: async () => {
-      const res = await axios.get(
-        `http://localhost:5000/api/apartments?minRent=${rentRange.min}&maxRent=${rentRange.max}&page=${currentPage}&limit=8`
+      const res = await axiosPublic.get(
+        `/apartments?minRent=${rentRange.min}&maxRent=${rentRange.max}&page=${currentPage}&limit=8`
       );
       setTotalPages(Math.ceil(res.data.total / 8));
       return res.data.apartments;
@@ -30,42 +39,35 @@ const Apartment = () => {
   });
 
   const handleAgreement = async (apartment) => {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/auth/login", { state: { from: location }, replace: true });
-      return;
-    }
-
-    try {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      const payload = {
-        userName: userInfo.name,
-        userEmail: userInfo.email,
+    if (user && user.email) {
+      const agreement = {
+        userName: user.displayName,
+        userEmail: user.email,
         floorNo: apartment.floorNo,
         blockName: apartment.blockName,
         apartmentNo: apartment.apartmentNo,
         rent: apartment.rent,
+        apartmentId: apartment._id,
         status: "pending",
       };
-
-      const response = await axios.post(
-        "http://localhost:5000/api/agreements",
-        payload,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-
-      if (response.status === 201) {
+  
+      try {
+        const response = await axiosSecure.post("/agreement", agreement);
+        console.log(response);
         toast.success("Agreement request submitted successfully!");
-      } else {
-        toast.error("Error submitting agreement. Please try again.");
+      } catch (error) {
+        if (error.response?.status === 400) {
+          toast.error(error.response?.data?.message);
+        } else {
+          toast.error("Failed to submit agreement. Please try again.");
+        }
       }
-    } catch (error) {
-      toast.error(
-        
-        error.response?.data?.message || "Error submitting agreement. Please try again."
-      );
+    } else {
+      navigate("/login", { state: { from: location }, replace: true });
     }
   };
+  
+  
 
   // Pagination handlers
   const handlePrevPage = () => {
@@ -85,7 +87,7 @@ const Apartment = () => {
     return (
       <div className="container mx-auto w-full">
         <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-        <Lottie animationData={loadingAnimation} className="w-32" />
+          <Lottie animationData={loadingAnimation} className="w-32" />
         </div>
       </div>
     );
@@ -122,7 +124,7 @@ const Apartment = () => {
               placeholder="Min Rent"
               value={rentRange.min}
               onChange={(e) =>
-                setRentRange({ ...rentRange, min: +e.target.value }) 
+                setRentRange({ ...rentRange, min: +e.target.value })
               }
               className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
             />
@@ -136,12 +138,15 @@ const Apartment = () => {
               placeholder="Max Rent"
               value={rentRange.max}
               onChange={(e) =>
-                setRentRange({ ...rentRange, max: +e.target.value }) // Ensure max is a number
+                setRentRange({ ...rentRange, max: +e.target.value })
               }
               className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
             />
           </div>
-          <button onClick={handleClearSearch} className="btn btn-sm btn-primary">
+          <button
+            onClick={handleClearSearch}
+            className="btn btn-sm btn-primary"
+          >
             Clear
           </button>
         </div>
