@@ -13,6 +13,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import Announcements from "../pages/Dashboard/Announcements/Announcements";
 import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMembe/ManageMember";
 
 const Routes = createBrowserRouter([
   {
@@ -43,8 +44,10 @@ const Routes = createBrowserRouter([
     ),
     errorElement: <Error404 />,
     children: [
-      { path: "profile", element: <MyProfile /> },
+      { path: "home", element: <Dashboard /> },
+      { path: "user-profile", element: <MyProfile /> },
       { path: "announcements", element: <Announcements /> },
+      { path: "manage-members", element: <ManageMembers /> },
     ],
   },
 ]);

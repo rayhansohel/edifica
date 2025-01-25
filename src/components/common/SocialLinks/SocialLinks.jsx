@@ -12,7 +12,7 @@ const SocialLinks = () => {
           href="https://www.facebook.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors"
+          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors duration-600"
         >
           <FiFacebook className="text-lg" />
         </a>
@@ -20,7 +20,7 @@ const SocialLinks = () => {
           href="https://x.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors"
+          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors duration-600"
         >
           <FaXTwitter />
         </a>
@@ -28,7 +28,7 @@ const SocialLinks = () => {
           href="https://www.instagram.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors"
+          className="w-9 h-9 border border-base-300 flex items-center justify-center rounded-lg hover:text-accent transition-colors duration-600"
         >
           <FaInstagram className="text-lg" />
         </a>
