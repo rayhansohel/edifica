@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useAuth } from "../../../context/AuthContext";
 import ProfilePlaceholder from "../../../assets/images/profile-placeholder.png";
 import { Helmet } from "react-helmet-async";
@@ -5,21 +6,23 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../../assets/animations/Loading.json";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   // Fetch agreement details from the server
-  const {
-    data: agreementData,
-    isLoading,
-    error,
-  } = useQuery({
+  const { data: agreementData, isLoading } = useQuery({
     queryKey: ["userAgreement", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/agreement/${user?.email}`);
-      return res.data;
+      try {
+        const res = await axiosSecure.get(`/agreement/${user?.email}`);
+        return res.data;
+      } catch (error) {
+        return null;
+      }
     },
     enabled: !!user?.email,
   });
@@ -29,12 +32,12 @@ const MyProfile = () => {
     name: user?.displayName || "User",
     email: user?.email || "user@example.com",
     profilePicture: user?.photoURL || ProfilePlaceholder,
-    agreementStatus: agreementData?.status || "None",
-    agreementDate: agreementData?.date || "None",
+    agreementStatus: agreementData?.status || "Not Available",
+    agreementDate: agreementData?.date || "Not Available",
     apartmentInfo: {
-      floor: agreementData?.floorNo || "None",
-      block: agreementData?.blockName || "None",
-      roomNo: agreementData?.apartmentNo || "None",
+      floor: agreementData?.floorNo || "Not Available",
+      block: agreementData?.blockName || "Not Available",
+      roomNo: agreementData?.apartmentNo || "Not Available",
     },
   };
 
@@ -42,13 +45,6 @@ const MyProfile = () => {
     return (
       <div className="flex justify-center items-center min-h-screen">
         <Lottie animationData={loadingAnimation} className="w-20" />
-      </div>
-    );
-
-  if (error)
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        Error loading profile. Please try again later.
       </div>
     );
 
@@ -99,8 +95,45 @@ const MyProfile = () => {
         </div>
       </div>
 
-      <div className="bg-base-200 rounded-box min-h-[calc(100vh-252px)] flex items-center justify-center">
-        <h3>No Notice Available!</h3>
+      <div className="bg-base-200 rounded-box min-h-[calc(100vh-252px)] flex flex-col items-center justify-center p-8 text-center">
+        {agreementData ? (
+          agreementData.status?.toLowerCase() === "pending" ? (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-warning">
+                A request received for an apartment rent.
+              </h3>
+              <p className="text-sm opacity-75">
+                Thank you for your patience. We will get back to you shortly.
+              </p>
+            </div>
+          ) : agreementData.status?.toLowerCase() === "done" ? (
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold text-success">
+                Congratulations! We are glad to have you with us.
+              </h3>
+              <p className="text-sm opacity-75">
+                Welcome to your new apartment! We are delighted to have you with
+                us.
+              </p>
+            </div>
+          ) : null
+        ) : (
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-error">
+              No agreement found.
+            </h3>
+            <p className="text-sm opacity-75 mb-4">
+              Please visit the apartments page to choose an apartment and
+              request an agreement.
+            </p>
+            <button
+              onClick={() => navigate("/apartment")}
+              className="btn btn-sm btn-accent"
+            >
+              Go to Apartments
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

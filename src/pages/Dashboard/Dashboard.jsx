@@ -14,7 +14,7 @@ const Dashboard = () => {
         </div>
         <div className="bg-base-200 rounded-box min-h-[calc(100vh-108px)] flex flex-col gap-4 items-center justify-center">
           <h1 className="text-7xl text-accent">Hello!</h1> 
-          <h3 className="text-base">Wellcome to Dashboard</h3>
+          <h3 className="text-base">Welcome to Edifica! We're thrilled to have you with us and look forward to being a part of your journey.</h3>
         </div>
       </div>
     </div>

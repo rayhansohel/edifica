@@ -48,7 +48,7 @@ const Apartment = () => {
         apartmentNo: apartment.apartmentNo,
         rent: apartment.rent,
         apartmentId: apartment._id,
-        status: "pending",
+        status: "Pending",
       };
   
       try {
