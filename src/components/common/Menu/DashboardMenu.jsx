@@ -2,13 +2,11 @@
 import { NavLink } from "react-router-dom";
 import { FiUser } from "react-icons/fi";
 import { TbNotification } from "react-icons/tb";
-import { RiDashboardLine } from "react-icons/ri";
 
 const DashboardMenu = ({ closeMenu }) => {
   const links = [
-    { to: "/dashboard", icon: <RiDashboardLine />, value: "Dashboard" },
-    { to: "/profile", icon: <FiUser />, value: "My Profile" },
-    { to: "/announcement", icon: <TbNotification />, value: "Announcements" },
+    { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
+    { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" },
   ];
 
   return (

@@ -49,7 +49,7 @@ const MyProfile = () => {
     );
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col min-h-[calc(100vh-49px)] md:min-h-screen space-y-4 p-4">
       <Helmet>
         <title>Profile - Edifica</title>
       </Helmet>
@@ -67,54 +67,56 @@ const MyProfile = () => {
             alt="User Profile"
             className="w-24 h-24 rounded-xl border border-base-300"
           />
-          <div>
-            <h3 className="text-2xl font-medium">{profileData.name}</h3>
-            <p>{profileData.email}</p>
+          <div className="flex flex-col">
+            <h3 className="text-2xl font-medium">
+              {profileData.name}
+            </h3>
+            <h3>{profileData.email}</h3>
           </div>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Agreement Information</h3>
-          <p>Accept Status: {profileData.agreementStatus}</p>
-          <p>Accept Date: {profileData.agreementDate}</p>
+          <h3>Accept Status: {profileData.agreementStatus}</h3>
+          <h3>Accept Date: {profileData.agreementDate}</h3>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Apartment Information</h3>
           <ul>
-            <li className="opacity-70">
+            <li>
               Floor: {profileData.apartmentInfo.floor}
             </li>
-            <li className="opacity-70">
+            <li>
               Block: {profileData.apartmentInfo.block}
             </li>
-            <li className="opacity-70">
+            <li>
               Room No: {profileData.apartmentInfo.roomNo}
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="bg-base-200 rounded-box min-h-[calc(100vh-252px)] flex flex-col items-center justify-center p-8 text-center">
+      <div className="bg-base-200 rounded-box flex flex-col items-center justify-center p-8 text-center flex-grow">
         {agreementData ? (
           agreementData.status?.toLowerCase() === "pending" ? (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-warning">
                 A request received for an apartment rent.
               </h3>
-              <p className="text-sm opacity-75">
+              <h3>
                 Thank you for your patience. We will get back to you shortly.
-              </p>
+              </h3>
             </div>
           ) : agreementData.status?.toLowerCase() === "done" ? (
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-success">
                 Congratulations! We are glad to have you with us.
               </h3>
-              <p className="text-sm opacity-75">
+              <h3>
                 Welcome to your new apartment! We are delighted to have you with
                 us.
-              </p>
+              </h3>
             </div>
           ) : null
         ) : (
@@ -122,10 +124,10 @@ const MyProfile = () => {
             <h3 className="text-lg font-semibold text-error">
               No agreement found.
             </h3>
-            <p className="text-sm opacity-75 mb-4">
+            <h3>
               Please visit the apartments page to choose an apartment and
               request an agreement.
-            </p>
+            </h3>
             <button
               onClick={() => navigate("/apartment")}
               className="btn btn-sm btn-accent"

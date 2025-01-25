@@ -4,19 +4,33 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../../context/AuthContext";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const RegisterForm = () => {
   const { registerWithEmailPassword, signInWithGoogle } =
     useContext(AuthContext);
-
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
 
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        toast.success("Login with Google successful!");
+        navigate(from, { replace: true });
+      })
+      .catch(() => {
+        toast.error("Google sign-in failed. Try again!");
+      });
+  };
 
   const validatePassword = (password) => {
     const uppercase = /[A-Z]/;
@@ -70,6 +84,11 @@ const RegisterForm = () => {
 
     try {
       await registerWithEmailPassword(email, password, displayName, photoURL);
+      const userInfo = {
+        name: displayName,
+        email: email,
+      };
+      axiosPublic.post("/users", userInfo);
       toast.success("Registration successful!");
       navigate(from, { replace: true });
     } catch (err) {
@@ -79,19 +98,6 @@ const RegisterForm = () => {
         toast.error("Something went wrong. Please try again.");
       }
     }
-  };
-
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("Login with Google successful!");
-        navigate(from, { replace: true });
-      })
-      .catch(() => {
-        toast.error("Google sign-in failed. Try again!");
-      });
   };
 
   return (

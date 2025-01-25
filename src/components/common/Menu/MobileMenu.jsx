@@ -51,7 +51,7 @@ const MobileMenu = () => {
       {/* Drawer menu */}
       <div
         ref={menuRef}
-        className={`z-50 fixed top-0 left-0 h-screen bg-base-200 border-r border-base-300 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`z-50 fixed top-0 left-0 h-screen flex flex-col bg-base-200 border-r border-base-300 shadow-lg transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -76,7 +76,7 @@ const MobileMenu = () => {
         <hr className="border-base-300 mx-4" />
 
 
-        <div className="min-h-[calc(100vh-134px)]">
+        <div className="flex-grow">
           <MainMenu closeMenu={closeMenu} />
           {user && (
             <div>
