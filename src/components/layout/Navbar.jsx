@@ -10,11 +10,11 @@ const Navbar = () => {
     <div className="backdrop-blur bg-base-200/70 border-b border-base-300">
       <div className="container mx-auto px-4 flex justify-between items-center min-h-12">
         {/*Mobile Menu*/}
-        <div className="md:hidden min-w-32 ">
+        <div className="md:hidden min-w-20 ">
           <MobileMenu />
         </div>
         {/* Brand Logo and Mobile Dropdown*/}
-        <div className="flex items-center min-w-32 gap-2">
+        <div className="flex items-center min-w-20 gap-2">
           {/* Brand Logo */}
           <Link to="/">
             <div className="flex items-center justify-center gap-1">
@@ -32,7 +32,7 @@ const Navbar = () => {
         </div>
 
         {/* Auth button */}
-        <div className="min-w-32 flex justify-end items-center gap-2">
+        <div className="min-w-20 flex justify-end items-center gap-2">
           <div>
             <AvaterButton />
           </div>

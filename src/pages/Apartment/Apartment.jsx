@@ -87,7 +87,7 @@ const Apartment = () => {
     return (
       <div className="container mx-auto w-full">
         <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          <Lottie animationData={loadingAnimation} className="w-32" />
+          <Lottie animationData={loadingAnimation} className="w-20" />
         </div>
       </div>
     );
@@ -103,7 +103,7 @@ const Apartment = () => {
   return (
     <div className="container mx-auto px-4 py-6 md:py-20">
       <Helmet>
-        <title>Apartment- Edifica</title>
+        <title>Apartment - Edifica</title>
       </Helmet>
 
       <SectionTitle

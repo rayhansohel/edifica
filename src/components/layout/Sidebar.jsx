@@ -7,7 +7,7 @@ import DashboardMenu from "../common/Menu/DashboardMenu";
 
 const Sidebar = () => {
   return (
-    <div className="w-72 h-full bg-base-200 border-r border-base-300">
+    <div className="w-72 h-full bg-base-200 border-r border-base-300 rounded-box">
       <div className="flex items-center gap-2 justify-between w-full p-4">
         {/* Brand Logo */}
         <Link to="/">
@@ -24,7 +24,7 @@ const Sidebar = () => {
       <hr className="border-base-300 mx-4" />
 
       {/* Menu Items */}
-      <div className="min-h-[calc(100vh-134px)]">
+      <div className="min-h-[calc(100vh-166px)]">
         <DashboardMenu />
       </div>
 

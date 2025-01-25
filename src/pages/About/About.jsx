@@ -31,7 +31,7 @@ const About = () => {
     return (
       <div className="container mx-auto w-full">
         <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          <Lottie animationData={loadingAnimation} className="w-32" />
+          <Lottie animationData={loadingAnimation} className="w-20" />
         </div>
       </div>
     );
@@ -48,7 +48,7 @@ const About = () => {
   return (
     <div>
       <Helmet>
-        <title>About- Edifica</title>
+        <title>About - Edifica</title>
       </Helmet>
       <div>
         {/* Section 1: About Building */}

@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div className="min-h-[calc(100vh-344px)]">
       <Helmet>
-        <title>Contact- Edifica</title>
+        <title>Contact - Edifica</title>
       </Helmet>
 
       <section className="w-full container mx-auto py-8 md:py-20 px-4">

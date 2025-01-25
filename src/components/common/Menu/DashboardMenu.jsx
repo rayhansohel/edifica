@@ -7,7 +7,7 @@ import { RiDashboardLine } from "react-icons/ri";
 const DashboardMenu = ({ closeMenu }) => {
   const links = [
     { to: "/dashboard", icon: <RiDashboardLine />, value: "Dashboard" },
-    { to: "/my-profile", icon: <FiUser />, value: "My Profile" },
+    { to: "/profile", icon: <FiUser />, value: "My Profile" },
     { to: "/announcement", icon: <TbNotification />, value: "Announcements" },
   ];
 
