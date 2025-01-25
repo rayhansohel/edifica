@@ -1,14 +1,14 @@
+// src/components/RegisterForm.js
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { AuthContext } from "../../../context/AuthContext";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { AuthContext } from "../../../context/AuthContext";
+import SocialLogin from "./SocialLogin";
 
 const RegisterForm = () => {
-  const { registerWithEmailPassword, signInWithGoogle } =
-    useContext(AuthContext);
+  const { registerWithEmailPassword } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,18 +18,8 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-
-        toast.success("Login with Google successful!");
-        navigate(from, { replace: true });
-      })
-      .catch(() => {
-        toast.error("Google sign-in failed. Try again!");
-      });
+  const handleGoogleSignInSuccess = () => {
+    navigate(from, { replace: true });
   };
 
   const validatePassword = (password) => {
@@ -102,23 +92,11 @@ const RegisterForm = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96">
-      <div>
-        <button
-          onClick={handleGoogleSignIn}
-          type="button"
-          className="btn btn-sm bg-base-100 border-base-300 hover:bg-base-300 shadow-none"
-        >
-          <FcGoogle className="text-lg" />
-          <span>Login with Google</span>
-        </button>
-      </div>
+      <SocialLogin onSuccess={handleGoogleSignInSuccess} />
       <div className="flex w-full flex-col px-9 mt-4 -mb-4">
         <div className="divider">OR</div>
       </div>
       <form onSubmit={handleSubmit} className="card-body w-full space-y-2">
-        <div>
-          <h1 className="text-md text-center">Register Here</h1>
-        </div>
         <div className="form-control">
           <input
             type="text"

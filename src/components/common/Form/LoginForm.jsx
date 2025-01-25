@@ -1,13 +1,13 @@
-/* eslint-disable react/no-unescaped-entities */
+// src/components/LoginForm.js
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import toast from "react-hot-toast";
+import SocialLogin from "./SocialLogin";
 
 const LoginForm = () => {
-  const { userLogin, signInWithGoogle } = useContext(AuthContext);
+  const { userLogin } = useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,17 +33,8 @@ const LoginForm = () => {
     return "";
   };
 
-  const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success("Login with Google successful!");
-        navigate(from, { replace: true });
-      })
-      .catch(() => {
-        toast.error("Google sign-in failed. Try again!");
-      });
+  const handleGoogleSignInSuccess = () => {
+    navigate(from, { replace: true });
   };
 
   const handleSubmit = (e) => {
@@ -82,16 +73,7 @@ const LoginForm = () => {
   return (
     <div>
       <div className="flex flex-col items-center justify-center min-w-96">
-        <div>
-          <button
-            onClick={handleGoogleSignIn}
-            type="button"
-            className="btn btn-sm bg-base-100 border-base-300 hover:bg-base-300 shadow-none"
-          >
-            <FcGoogle className="text-lg" />
-            <span>Login with Google</span>
-          </button>
-        </div>
+        <SocialLogin onSuccess={handleGoogleSignInSuccess} />
         <div className="flex w-full flex-col px-9 mt-4 -mb-4">
           <div className="divider">OR</div>
         </div>
