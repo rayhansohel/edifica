@@ -12,7 +12,6 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
 
   const emailRef = useRef();
   const [showPassword, setShowPassword] = useState(false);
@@ -87,7 +86,7 @@ const LoginForm = () => {
           <button
             onClick={handleGoogleSignIn}
             type="button"
-            className="btn btn-sm bg-base-100 shadow-none"
+            className="btn btn-sm bg-base-100 border-base-300 hover:bg-base-300 shadow-none"
           >
             <FcGoogle className="text-lg" />
             <span>Login with Google</span>
@@ -103,7 +102,7 @@ const LoginForm = () => {
               name="email"
               ref={emailRef}
               placeholder="Enter your email address"
-              className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none bg-base-300"
+              className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
               required
             />
             {emailError && (
@@ -115,7 +114,7 @@ const LoginForm = () => {
               type={showPassword ? "text" : "password"}
               name="password"
               placeholder="Enter your password"
-              className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none bg-base-300"
+              className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
               required
             />
             <span

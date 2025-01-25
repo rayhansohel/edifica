@@ -6,7 +6,6 @@ import { LuContactRound } from "react-icons/lu";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
-import { RiDashboardLine } from "react-icons/ri";
 
 const NavMenu = () => {
   const { theme } = useContext(ThemeContext);
@@ -16,7 +15,6 @@ const NavMenu = () => {
     { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "Apartments" },
     { to: "/about", icon: <LuContactRound />, tooltip: "About" },
     { to: "/contact", icon: <MdOutlineAlternateEmail />, tooltip: "Contact"},
-    // { to: "/dashboard", icon: <RiDashboardLine />, tooltip: "Dashboard"},
   ];
 
   return (

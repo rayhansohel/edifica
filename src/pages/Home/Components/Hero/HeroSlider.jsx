@@ -29,11 +29,11 @@ const HeroSlider = () => {
       const totalSlides = slides.length;
       const nextIndex = (index + totalSlides) % totalSlides;
       setCurrentSlide(nextIndex);
-  
+
       const targetSlide = sliderRef.current.querySelector(
         `#slide${nextIndex + 1}`
       );
-  
+
       if (targetSlide) {
         sliderRef.current.scrollTo({
           left: targetSlide.offsetLeft,
@@ -42,7 +42,6 @@ const HeroSlider = () => {
       }
     }
   };
-  
 
   // Auto-slide functionality
   useEffect(() => {
@@ -58,7 +57,7 @@ const HeroSlider = () => {
       {/* Carousel */}
       <div
         ref={sliderRef}
-        className="carousel w-full overflow-hidden rounded-badge"
+        className="carousel w-full overflow-hidden rounded-box"
       >
         {slides.map((slide, index) => (
           <div

@@ -8,5 +8,5 @@ p {
   }
 
 .btn {
-    @apply rounded-lg;
+    @apply rounded-md;
 }

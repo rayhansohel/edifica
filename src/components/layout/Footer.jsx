@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="min-h-20 bg-base-200 border-t border-base-300 pt-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-          <div className="min-h-40 rounded-badge border border-base-300 p-6 space-y-2">
+          <div className="rounded-box border border-base-300 p-6 space-y-4">
             <Link to="/">
               <div className="flex items-center gap-2">
                 <img src={BrandLogo} alt="Brand Logo" className="w-10" />
@@ -29,14 +29,14 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 rounded-badge">
+          <div className="border border-base-300 p-6 rounded-box">
             <h3 className="uppercase mb-2">Page Links</h3>
             <div>
               <FooterMenu />
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 space-y-2 rounded-badge">
+          <div className="border border-base-300 p-6 space-y-2 rounded-box">
             <h3 className="uppercase mb-2">Contact Info</h3>
             <div className="flex items-center gap-2 ">
               <div className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center">
@@ -58,26 +58,27 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="min-h-40 border border-base-300 p-6 rounded-badge">
-            <h3 className="uppercase mb-2">Newsleter</h3>
+          <div className="border border-base-300 p-6 rounded-box">
+            <h3 className="uppercase mb-3">Newsleter</h3>
             <p>
               Subscribe to our newsletter and stay updated with the property
               insights delivered straight to your inbox.
             </p>
-            <div className="flex w-full mt-4">
+            <div className="flex w-full mt-5">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full p-2 input-sm rounded-l-lg focus:outline-none bg-base-300"
+                className="w-full p-2 input-sm rounded-l-md focus:outline-none bg-base-300"
               />
-              <button className="bg-purple-700 hover:bg-purple-800 text-white px-6 rounded-r-lg">
+              <button className="bg-purple-700 hover:bg-purple-800 text-white px-6 rounded-r-md">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
+
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
-          <div className="h-10 w-full px-2 border border-base-300 rounded-xl flex justify-center items-center">
+          <div className="h-10 w-full px-2 border border-base-300 rounded-lg flex justify-center items-center">
             <p>
               <Link to="/" className="text-accent font-semibold">
                 Edifica

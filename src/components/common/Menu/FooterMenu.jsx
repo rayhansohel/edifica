@@ -19,7 +19,7 @@ const FooterMenu = () => {
         <div>
           {/* Links */}
           <ul>
-            {links.map(({ to, icon, value }) => (
+            {links.map(({ to, value }) => (
               <li key={to}>
                 <NavLink
                   to={to}

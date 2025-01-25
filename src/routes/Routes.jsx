@@ -11,60 +11,53 @@ import Register from "../pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import Announcements from "../pages/Dashboard/Announcements/Announcements";
+import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 
 const Routes = createBrowserRouter([
-  //Main route
+  // Main route
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/apartment",
-        element: <Apartment />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
+      { path: "/", element: <Home /> },
+      { path: "/apartment", element: <Apartment /> },
+      { path: "/about", element: <About /> },
+      { path: "/contact", element: <Contact /> },
     ],
   },
 
-  //Auth route
+  // Auth route
   {
     path: "",
     element: <AuthLayout />,
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
 
+  // Dashboard routes (All children are private)
   {
     path: "/dashboard",
     element: <DashboardLayout />,
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
       {
-        path: "/dashboard",
+        path: "/dashboard/my-profile",
         element: (
           <PrivateRoute>
-            <Dashboard />
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/announcement",
+        element: (
+          <PrivateRoute>
+            <Announcements />
           </PrivateRoute>
         ),
       },

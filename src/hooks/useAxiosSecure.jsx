@@ -5,7 +5,9 @@ import { useAuth } from "../context/AuthContext";
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
 });
+
 const useAxiosSecure = () => {
+  
   const navigate = useNavigate();
   const { logOut } = useAuth();
 

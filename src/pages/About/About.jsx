@@ -60,17 +60,17 @@ const About = () => {
             />
 
             <div className="mt-4 grid grid-cols-1 gap-6">
-              <div className="rounded-badge overflow-hidden">
+              <div className="rounded-box overflow-hidden">
                 <img
                   src="https://i.ibb.co.com/qCv0PB3/about.jpg"
                   alt="about us"
-                  className="object-cover h-full w-full min-h-80 hover:scale-110 transition-transform duration-700 ease-in-out"
+                  className="object-cover h-full w-full min-h-80"
                 />
               </div>
               <div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {/* Feature 1 */}
-                  <div className="border border-base-300 p-6 rounded-badge hover:bg-base-200 transition-color duration-300 ease-in-out">
+                  <div className="border border-base-300 p-6 rounded-box hover:bg-base-200 transition-color duration-300 ease-in-out">
                     <h3 className="text-md uppercase font-semibold mb-2">
                       Modern Architecture
                     </h3>
@@ -80,7 +80,7 @@ const About = () => {
                     </p>
                   </div>
                   {/* Feature 2 */}
-                  <div className="border border-base-300 p-6 rounded-badge hover:bg-base-200 transition-color duration-300 ease-in-out">
+                  <div className="border border-base-300 p-6 rounded-box hover:bg-base-200 transition-color duration-300 ease-in-out">
                     <h3 className="text-md uppercase font-semibold mb-2">
                       Sustainable Design
                     </h3>
@@ -90,7 +90,7 @@ const About = () => {
                     </p>
                   </div>
                   {/* Feature 3 */}
-                  <div className="border border-base-300 p-6 rounded-badge hover:bg-base-200 transition-color duration-300 ease-in-out">
+                  <div className="border border-base-300 p-6 rounded-box hover:bg-base-200 transition-color duration-300 ease-in-out">
                     <h3 className="text-md uppercase font-semibold mb-2">
                       Prime Location
                     </h3>
@@ -101,7 +101,7 @@ const About = () => {
                     </p>
                   </div>
                   {/* Feature 4 */}
-                  <div className="border border-base-300 p-6 rounded-badge hover:bg-base-200 transition-color duration-300 ease-in-out">
+                  <div className="border border-base-300 p-6 rounded-box hover:bg-base-200 transition-color duration-300 ease-in-out">
                     <h3 className="text-md uppercase font-semibold mb-2">
                       Unparalleled Amenities
                     </h3>
@@ -139,7 +139,7 @@ const About = () => {
                     <img
                       src={apartment.image}
                       alt={`Apartment ${apartment.apartmentNo}`}
-                      className="object-cover w-60 md:w-80 rounded-badge transition-transform duration-500 ease-in-out"
+                      className="object-cover w-60 md:w-80 rounded-box transition-transform duration-500 ease-in-out"
                     />
                   </a>
                 ))}

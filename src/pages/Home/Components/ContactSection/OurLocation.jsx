@@ -20,7 +20,7 @@ const OurLocation = () => {
           </div>
         </div>
         <div>
-          <div className="mt-8 rounded-badge overflow-hidden bg-base-200">
+          <div className="mt-8 rounded-box overflow-hidden bg-base-200">
             <Iframe
               url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5362.455986141798!2d90.38611587424055!3d23.868753380539204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c410ec3b89c7%3A0xf55205f7f62d521d!2sUttara%20Sector%2013%20Park!5e0!3m2!1sen!2sbd!4v1737212202793!5m2!1sen!2sbd"
               width="100%"

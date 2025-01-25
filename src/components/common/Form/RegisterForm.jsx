@@ -100,7 +100,7 @@ const RegisterForm = () => {
         <button
           onClick={handleGoogleSignIn}
           type="button"
-          className="btn btn-sm bg-base-100 shadow-none"
+          className="btn btn-sm bg-base-100 border-base-300 hover:bg-base-300 shadow-none"
         >
           <FcGoogle className="text-lg" />
           <span>Login with Google</span>
@@ -118,7 +118,7 @@ const RegisterForm = () => {
             type="text"
             name="displayName"
             placeholder="Your Name"
-            className="input input-sm input-bordered text-xs  font-semibold focus:outline-none border-none bg-base-300"
+            className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
             required
           />
         </div>
@@ -127,7 +127,7 @@ const RegisterForm = () => {
             type="email"
             name="email"
             placeholder="Email Address"
-            className="input input-sm input-bordered text-xs  font-semibold focus:outline-none border-none bg-base-300"
+            className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
             required
           />
           {emailError && (
@@ -139,7 +139,7 @@ const RegisterForm = () => {
             type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Password"
-            className="input input-sm input-bordered text-xs  font-semibold focus:outline-none border-none bg-base-300"
+            className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
             required
           />
           <span
@@ -161,7 +161,7 @@ const RegisterForm = () => {
             type="text"
             name="photoURL"
             placeholder="Profile Picture URL"
-            className="input input-sm input-bordered text-xs  font-semibold focus:outline-none border-none bg-base-300"
+            className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
           />
         </div>
         <div className="form-control mt-6">

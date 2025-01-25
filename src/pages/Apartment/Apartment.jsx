@@ -19,7 +19,7 @@ const Apartment = () => {
   const location = useLocation();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user } = useAuth(); 
 
   // Fetch apartments data
   const {
@@ -54,7 +54,7 @@ const Apartment = () => {
       try {
         const response = await axiosSecure.post("/agreement", agreement);
         console.log(response);
-        toast.success("Agreement request submitted successfully!");
+        toast.success("Agreement request submitted successfully.");
       } catch (error) {
         if (error.response?.status === 400) {
           toast.error(error.response?.data?.message);
@@ -112,8 +112,8 @@ const Apartment = () => {
       />
 
       {/* Rent Range Search */}
-      <div className="my-4">
-        <h3 className="text-lg text-center mb-2">Filter by Rent</h3>
+      <div className="my-6">
+        <h3 className="text-lg text-center mb-4">Filter by Rent</h3>
         <div className="flex items-center justify-center gap-4">
           <div className="space-x-2">
             <label htmlFor="minRent" className="text-sm mb-2">
@@ -126,7 +126,7 @@ const Apartment = () => {
               onChange={(e) =>
                 setRentRange({ ...rentRange, min: +e.target.value })
               }
-              className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
+              className="input-sm border border-base-300 bg-base-200 rounded-md px-3 py-2 w-24"
             />
           </div>
           <div className="space-x-2">
@@ -140,7 +140,7 @@ const Apartment = () => {
               onChange={(e) =>
                 setRentRange({ ...rentRange, max: +e.target.value })
               }
-              className="input-sm border border-base-300 bg-base-200 rounded-lg px-3 py-2 w-24"
+              className="input-sm border border-base-300 bg-base-200 rounded-md px-3 py-2 w-24"
             />
           </div>
           <button
@@ -153,11 +153,11 @@ const Apartment = () => {
       </div>
 
       {/* Apartments */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {apartments?.map((apartment) => (
           <div
             key={apartment.id}
-            className="border border-base-300 rounded-badge overflow-hidden"
+            className="border border-base-300 rounded-box overflow-hidden hover:bg-base-200 transition-colors duration-600"
           >
             <img
               src={apartment.image}

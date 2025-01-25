@@ -17,6 +17,14 @@ const Register = () => {
         <title>Register - Edifica</title>
       </Helmet>
       <div className="min-h-screen w-full bg-cover bg-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center items-center p-8 gap-8">
+        <div className="hidden md:flex h-full w-full rounded-box overflow-hidden md:col-span-1 lg:col-span-2">
+          <img
+            src="https://i.ibb.co.com/KFRjY0z/register.jpg"
+            alt="about us"
+            className="object-cover h-full w-full min-h-80 transition-transform duration-700 ease-in-out"
+          />
+        </div>
+
         <div className="w-full h-full bg-base-100/20 backdrop-blur flex flex-col items-center justify-center gap-8 col-span-1">
           {/* Brand Logo for mobile*/}
           <div className="">
@@ -56,13 +64,6 @@ const Register = () => {
             {/* Theme Toggle */}
             <ThemeToggle />
           </div>
-        </div>
-        <div className="hidden md:flex h-full w-full rounded-badge overflow-hidden md:col-span-1 lg:col-span-2">
-          <img
-            src="https://i.ibb.co.com/KFRjY0z/register.jpg"
-            alt="about us"
-            className="object-cover h-full w-full min-h-80 hover:scale-110 transition-transform duration-700 ease-in-out"
-          />
         </div>
       </div>
     </>

@@ -44,7 +44,7 @@ const Faqs = () => {
           title="FAQ"
           subtitle="Everything you need to know"
         />
-        <div className="mt-6 px-8 border border-base-300 rounded-badge">
+        <div className="mt-6 px-8 border border-base-300 rounded-box">
           {faqs.map((faq, index) => (
             <div
               key={index}
