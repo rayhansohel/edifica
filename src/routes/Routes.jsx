@@ -30,7 +30,7 @@ const Routes = createBrowserRouter([
 
   // Auth route
   {
-    path: "",
+    path: "/",
     element: <AuthLayout />,
     errorElement: <Error404 />,
     children: [
@@ -41,12 +41,20 @@ const Routes = createBrowserRouter([
 
   // Dashboard routes (All children are private)
   {
-    path: "/dashboard",
+    path: "/",
     element: <DashboardLayout />,
     errorElement: <Error404 />,
     children: [
       {
-        path: "/dashboard/my-profile",
+        path: "/dashboard",
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-profile",
         element: (
           <PrivateRoute>
             <MyProfile />
@@ -54,7 +62,7 @@ const Routes = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard/announcement",
+        path: "/announcement",
         element: (
           <PrivateRoute>
             <Announcements />

@@ -15,8 +15,8 @@ const ThemeToggle = () => {
   return (
     <div className="flex items-center">
       <button
-        className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center ml-2"
-        data-tooltip-id="theme-tooltip"
+        className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center"
+        data-tooltip-id="tooltip"
         data-tooltip-content={`${theme === "dark" ? "Light" : "Dark"}`}
         onClick={handleThemeChange}
       >
@@ -26,9 +26,8 @@ const ThemeToggle = () => {
           <HiMoon className="text-lg hover:text-accent" />
         )}
       </button>
-      {/* Tooltip Component */}
       <Tooltip
-        id="theme-tooltip"
+        id="tooltip"
         place="bottom"
         style={{
           backgroundColor: theme === "light" ? "#151B23" : "#E5E7Eb",

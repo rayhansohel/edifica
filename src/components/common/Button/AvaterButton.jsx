@@ -1,14 +1,13 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import ProfilePlaceholder from "../../../assets/images/profile-placeholder.png";
-import { RiLoginCircleLine, RiDashboardLine } from "react-icons/ri";
 import { BiLogOutCircle } from "react-icons/bi";
-import { Tooltip } from "react-tooltip";
-import ThemeContext from "../../../context/ThemeContext";
+import LoginButton from "./LoginButton";
+import { RiDashboardLine } from "react-icons/ri";
+import UserCard from "../Card/UserCard";
 
-const AuthLogin = () => {
-  const { theme } = useContext(ThemeContext);
+const AvaterButton = () => {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -45,7 +44,7 @@ const AuthLogin = () => {
       setShowDropdown(false);
     }
   };
-
+  
   useEffect(() => {
     if (showDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -69,27 +68,16 @@ const AuthLogin = () => {
           {/* Dropdown Menu */}
           {showDropdown && (
             <div
-              className="absolute -right-10 top-10 mt-2 bg-base-200 border border-base-300 rounded-lg"
+              className="absolute right-0 top-12 bg-base-200 border border-base-300 rounded-lg p-4"
               style={{ minWidth: "max-content" }}
             >
-              <div className="px-4 py-2 flex items-center gap-2">
-                <img
-                  src={user.profilePicture}
-                  alt="User Profile"
-                  className="w-10 h-10 rounded-full"
-                />
-                <div>
-                  <p className="font-semibold">{user.name}</p>
-                  <p className="text-gray-500">{user.email}</p>
-                </div>
-              </div>
-              <hr className="border-base-300" />
+              <UserCard />
+              <hr className="border-base-300 my-4" />
               <ul>
                 <li>
                   <Link
                     to="/dashboard"
-                    className="px-4 py-2 flex items-center gap-2 hover:bg-base-300"
-                    onClick={() => setShowDropdown(false)}
+                    className="p-2 flex items-center gap-2 hover:bg-base-300 rounded-md"
                   >
                     <RiDashboardLine className="text-lg" />
                     <span>Dashboard</span>
@@ -97,7 +85,7 @@ const AuthLogin = () => {
                 </li>
                 <li>
                   <button
-                    className="w-full text-left px-4 py-2 flex items-center gap-2 hover:bg-base-300"
+                    className="w-full p-2 flex items-center gap-2 hover:bg-base-300 rounded-md"
                     onClick={handleLogout}
                   >
                     <BiLogOutCircle className="text-lg" />
@@ -109,27 +97,10 @@ const AuthLogin = () => {
           )}
         </div>
       ) : (
-        <Link
-          to="/login"
-          data-tooltip-id="login-tooltip"
-          data-tooltip-content="Login"
-          className="w-8 h-8 border border-base-300 rounded-md flex items-center justify-center"
-        >
-          <RiLoginCircleLine className="text-lg hover:text-accent" />
-          <Tooltip
-            id="login-tooltip"
-            place="bottom"
-            style={{
-              backgroundColor: theme === "light" ? "#151B23" : "#E5E7Eb",
-              color: theme === "light" ? "#ffffff" : "#000000",
-              padding: "6px 10px",
-              borderRadius: "4px",
-            }}
-          />
-        </Link>
+        <LoginButton />
       )}
     </div>
   );
 };
 
-export default AuthLogin;
+export default AvaterButton;
