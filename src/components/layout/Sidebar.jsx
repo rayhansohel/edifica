@@ -4,6 +4,7 @@ import ThemeToggle from "../common/ThemeToggle/ThemeToggle";
 import LogoutButton from "../common/Button/LogoutButton";
 import UserCard from "../common/Card/UserCard";
 import DashboardMenu from "../common/Menu/DashboardMenu";
+import MainMenu from "../common/Menu/MainMenu";
 
 const Sidebar = () => {
   return (
@@ -26,6 +27,8 @@ const Sidebar = () => {
       {/* Menu Items */}
       <div className="flex-grow">
         <DashboardMenu />
+        <hr className="border-base-300 mx-4" />
+        <MainMenu />
       </div>
 
       {/* User info */}

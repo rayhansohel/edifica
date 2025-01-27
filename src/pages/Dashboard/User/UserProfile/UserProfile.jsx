@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { useAuth } from "../../../context/AuthContext";
-import ProfilePlaceholder from "../../../assets/images/profile-placeholder.png";
+import { useAuth } from "../../../../context/AuthContext";
+import ProfilePlaceholder from "../../../../assets/images/profile-placeholder.png";
 import { Helmet } from "react-helmet-async";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
-import loadingAnimation from "../../../assets/animations/Loading.json";
+import loadingAnimation from "../../../../assets/animations/Loading.json";
 import { useNavigate } from "react-router-dom";
 
-const MyProfile = () => {
+const UserProfile = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -68,9 +68,7 @@ const MyProfile = () => {
             className="w-24 h-24 rounded-xl border border-base-300"
           />
           <div className="flex flex-col">
-            <h3 className="text-2xl font-medium">
-              {profileData.name}
-            </h3>
+            <h3 className="text-2xl font-medium">{profileData.name}</h3>
             <h3>{profileData.email}</h3>
           </div>
         </div>
@@ -84,15 +82,9 @@ const MyProfile = () => {
         <div className="bg-base-200 p-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Apartment Information</h3>
           <ul>
-            <li>
-              Floor: {profileData.apartmentInfo.floor}
-            </li>
-            <li>
-              Block: {profileData.apartmentInfo.block}
-            </li>
-            <li>
-              Room No: {profileData.apartmentInfo.roomNo}
-            </li>
+            <li>Floor: {profileData.apartmentInfo.floor}</li>
+            <li>Block: {profileData.apartmentInfo.block}</li>
+            <li>Room No: {profileData.apartmentInfo.roomNo}</li>
           </ul>
         </div>
       </div>
@@ -141,4 +133,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default UserProfile;

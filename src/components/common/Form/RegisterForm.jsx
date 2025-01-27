@@ -77,6 +77,7 @@ const RegisterForm = () => {
       const userInfo = {
         name: displayName,
         email: email,
+        role: "user"
       };
       axiosPublic.post("/users", userInfo);
       toast.success("Registration successful!");

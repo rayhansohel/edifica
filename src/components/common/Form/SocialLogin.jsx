@@ -17,6 +17,7 @@ const SocialLogin = ({ onSuccess }) => {
         const userInfo = {
           name: user?.displayName,
           email: user?.email,
+          role: "user"
         };
         axiosPublic.post("/users", userInfo);
         toast.success("Login with Google successful!");

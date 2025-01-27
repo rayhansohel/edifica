@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { MdDeleteForever } from "react-icons/md";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
 
   // Fetch all members from the database
   const {
     data: members = [],
+    refetch,
     isError,
     error,
   } = useQuery({
@@ -29,11 +30,11 @@ const ManageMembers = () => {
 
   // Handle remove member (change role to "user")
   const mutation = useMutation({
-    mutationFn: async (email) => {
-      await axiosSecure.patch(`/users/${email}`, { role: "user" });
+    mutationFn: async (id) => {
+      await axiosSecure.delete(`/users/${id}`);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(["members"]);
+      refetch();
       toast.success("Member removed successfully.");
     },
     onError: () => {
@@ -52,30 +53,30 @@ const ManageMembers = () => {
         <table className="table w-full border-collapse border border-base-100 rounded-lg">
           <thead>
             <tr className="bg-base-300 text-accent text-base">
-              <th className="border border-base-100 p-2">User Name</th>
-              <th className="border border-base-100 p-2">User Email</th>
-              <th className="border border-base-100 p-2">Actions</th>
+              <th className="border-b border-base-100 px-4 py-2">Serial</th>
+              <th className="border-b border-base-100 px-4 py-2">Name</th>
+              <th className="border-b border-base-100 px-4 py-2">Email</th>
+              <th className="border-b border-base-100 px-4 py-2">Role</th>
+              <th className="border-b border-base-100 px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
+            {members.map((member, index) => (
               <tr
                 key={member.email}
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-600"
               >
-                <td className="border border-base-100 p-2">{member.name}</td>
-                <td className="border border-base-100 p-2">{member.email}</td>
-                <td className="border border-base-100 p-2">
-                  {member.role === "member" ? (
-                    <button
-                      onClick={() => mutation.mutate(member.email)}
-                      className="btn btn-sm bg-red-500 text-white hover:bg-red-600"
-                    >
-                      Remove
-                    </button>
-                  ) : (
-                    <span className="text-base-500">User</span>
-                  )}
+                <td className="border-b border-base-100 px-4 py-2">{index+1}</td>
+                <td className="border-b border-base-100 px-4 py-2">{member.name}</td>
+                <td className="border-b border-base-100 px-4 py-2">{member.email}</td>
+                <td className="border-b border-base-100 px-4 py-2">User</td>
+                <td className="border-b border-base-100 px-4 py-2">
+                  <button
+                    onClick={() => mutation.mutate(member._id)}
+                    className="text-rose-600 hover:text-rose-800 text-xl"
+                  >
+                    <MdDeleteForever />
+                  </button>
                 </td>
               </tr>
             ))}

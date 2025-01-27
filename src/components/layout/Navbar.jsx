@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="backdrop-blur bg-base-200/70 border-b border-base-300">
       <div className="container mx-auto px-4 flex justify-between items-center min-h-12">
         {/*Mobile Menu*/}
-        <div className="md:hidden min-w-20 ">
+        <div className="lg:hidden min-w-20 ">
           <MobileMenu />
         </div>
         {/* Brand Logo and Mobile Dropdown*/}
@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
 
         {/* Menu Items */}
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex">
           <NavMenu />
         </div>
 
@@ -36,7 +36,7 @@ const Navbar = () => {
           <div>
             <AvaterButton />
           </div>
-          <div className="hidden md:flex">
+          <div className="hidden lg:flex">
             <ThemeToggle />
           </div>
         </div>

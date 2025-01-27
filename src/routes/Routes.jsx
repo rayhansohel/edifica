@@ -10,10 +10,13 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
-import Announcements from "../pages/Dashboard/Announcements/Announcements";
-import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
+import Announcements from "../pages/Dashboard/User/Announcements/Announcements";
+import MyProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ManageMembers from "../pages/Dashboard/Admin/ManageMembe/ManageMember";
+import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
+import ManageUser from "../pages/Dashboard/Owner/ManageUser/ManageUser";
+import Profile from "../pages/Dashboard/Owner/Profile/Profile";
 
 const Routes = createBrowserRouter([
   {
@@ -45,7 +48,9 @@ const Routes = createBrowserRouter([
     errorElement: <Error404 />,
     children: [
       { path: "home", element: <Dashboard /> },
-      { path: "user-profile", element: <MyProfile /> },
+      { path: "profile", element: <Profile /> },
+      { path: "manage-user", element: <ManageUser /> },
+      { path: "user-profile", element: <UserProfile /> },
       { path: "announcements", element: <Announcements /> },
       { path: "manage-members", element: <ManageMembers /> },
     ],
@@ -53,4 +58,3 @@ const Routes = createBrowserRouter([
 ]);
 
 export default Routes;
-
