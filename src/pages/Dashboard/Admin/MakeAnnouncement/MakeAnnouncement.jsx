@@ -72,16 +72,6 @@ const MakeAnnouncement = () => {
     return <div>Error fetching announcements!</div>;
   }
 
-  // Function to format the date
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
 
   return (
     <div className="p-4 flex flex-col gap-4">
@@ -118,19 +108,22 @@ const MakeAnnouncement = () => {
           ></textarea>
         </div>
         <button type="submit" className="btn btn-sm btn-accent w-fit">
-          Submit Announcement
+          Create Announcement
         </button>
       </form>
 
       {/* Announcement List */}
-      <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
+      <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-108px)] rounded-box bg-base-300 ">
         <table className="table w-full border-collapse border border-base-100 rounded-lg">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
+              <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
+                serial
+              </th>
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
                 Title
               </th>
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+              <th className="border border-base-100 px-6 py-3 min-w-96">
                 Description
               </th>
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
@@ -142,19 +135,23 @@ const MakeAnnouncement = () => {
             </tr>
           </thead>
           <tbody>
-            {announcements.map((announcement) => (
+            {announcements.map((announcement, index) => (
               <tr
                 key={announcement._id}
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
               >
+                {" "}
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
+                  {index + 1}
+                </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   {announcement.title}
                 </td>
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                <td className="border border-base-100 px-6 py-3">
                   {announcement.description}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                  {formatDate(announcement.createdAt)}
+                  {new Date(announcement.createdAt).toLocaleDateString()}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   <div

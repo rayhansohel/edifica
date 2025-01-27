@@ -48,6 +48,7 @@ const Apartment = () => {
         rent: apartment.rent,
         apartmentId: apartment._id,
         status: "Pending",
+        requestDate: new Date().toISOString(),
       };
   
       try {

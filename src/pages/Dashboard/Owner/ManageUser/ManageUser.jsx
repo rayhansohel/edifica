@@ -71,10 +71,10 @@ const ManageUser = () => {
         </h2>
       </div>
       <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
-        <table className="table w-full border-collapse border border-base-100 rounded-lg">
+        <table className="table w-full border-collapse border border-base-100 rounded-lg text-center">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 w-20">
+              <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-20">
                 Serial
               </th>
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap">

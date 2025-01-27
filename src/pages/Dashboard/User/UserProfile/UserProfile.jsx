@@ -101,7 +101,7 @@ const UserProfile = () => {
                 Congratulations! We are glad to have you with us.
               </h3>
               <h3>
-                Welcome to your new apartment! We are delighted to have you with
+                Welcome to your new apartment as a Member! We are delighted to have you with
                 us.
               </h3>
             </div>
@@ -109,7 +109,7 @@ const UserProfile = () => {
         ) : (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-error">
-              No agreement found.
+              No agreement found or Rejected if you applyed.
             </h3>
             <h3>
               Please visit the apartments page to choose an apartment and

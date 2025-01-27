@@ -18,7 +18,7 @@ const ManageMembers = () => {
     queryKey: ["members"],
     queryFn: async () => {
       const res = await axiosSecure.get("/users");
-      return res.data.filter(user => user.role === "member");
+      return res.data.filter((user) => user.role === "member");
     },
   });
 
@@ -50,15 +50,18 @@ const ManageMembers = () => {
         <title>Manage Members - Edifica</title>
       </Helmet>
       <div className="bg-base-200 py-4 px-6 rounded-xl flex justify-between items-center text-accent">
-        <h2 className="text-xl font-semibold">Manage Members</h2>
-        <h2 className="text-xl font-semibold">
+        <h2 className="text-base md:text-xl font-semibold">Manage Members</h2>
+        <h2 className="text-base md:text-xl font-semibold">
           Total Members: <span>{members.length}</span>
         </h2>
       </div>
       <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
-        <table className="table w-full border-collapse border border-base-100 rounded-lg">
+        <table className="table w-full border-collapse border border-base-100 rounded-lg text-center">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
+              <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
+                Serial
+              </th>
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
                 Name
               </th>
@@ -71,11 +74,14 @@ const ManageMembers = () => {
             </tr>
           </thead>
           <tbody>
-            {members.map((member) => (
+            {members.map((member, index) => (
               <tr
                 key={member._id}
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
               >
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
+                  {index + 1}
+                </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   {member.name}
                 </td>
