@@ -11,7 +11,6 @@ import Register from "../pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import Announcements from "../pages/Dashboard/User/Announcements/Announcements";
-import MyProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ManageMembers from "../pages/Dashboard/Admin/ManageMembe/ManageMember";
 import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";

@@ -17,8 +17,8 @@ const ManageUser = () => {
   } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/users");
-      return response.data;
+      const res = await axiosSecure.get("/users");
+      return res.data;
     },
   });
 
@@ -64,7 +64,7 @@ const ManageUser = () => {
       <Helmet>
         <title>Manage User - Edifica</title>
       </Helmet>
-      <div className="bg-base-200 py-4 px-6 rounded-xl flex justify-between items-center">
+      <div className="bg-base-200 py-4 px-6 rounded-xl flex justify-between items-center text-accent">
         <h2 className="text-xl font-semibold">Manage Users</h2>
         <h2 className="text-xl font-semibold">
           Total User: <span>{users.length}</span>
@@ -73,7 +73,7 @@ const ManageUser = () => {
       <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
         <table className="table w-full border-collapse border border-base-100 rounded-lg">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
-            <tr className="text-accent text-base">
+            <tr className="text-base text-primary">
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 w-20">
                 Serial
               </th>
@@ -124,7 +124,7 @@ const ManageUser = () => {
                         name: user.name,
                       })
                     }
-                    className="select select-sm select-bordered"
+                    className="select select-sm bg-base-100 rounded-md"
                   >
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
@@ -139,7 +139,7 @@ const ManageUser = () => {
                     }
                     className="w-full"
                   >
-                    <div className="text-rose-600 hover:text-rose-800 text-2xl flex items-center justify-center">
+                    <div className="hover:text-rose-800 text-2xl flex items-center justify-center">
                       <MdOutlineDeleteForever />
                     </div>
                   </button>

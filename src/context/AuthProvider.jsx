@@ -12,6 +12,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
+import useAxiosPublic from "./../hooks/useAxiosPublic";
+
 
 const auth = getAuth(app);
 
@@ -19,8 +21,8 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const googleProvider = new GoogleAuthProvider();
+  const axiosPublic = useAxiosPublic();
 
   const handleError = (err) => {
     setError(err.message);
@@ -102,16 +104,21 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
 
       if (currentUser) {
-        currentUser.getIdToken().then((idToken) => {
-          localStorage.setItem("authToken", idToken);
+        const userInfo = { email: currentUser.email };
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
         });
       } else {
-        localStorage.removeItem("authToken");
+        localStorage.removeItem("access-token");
+        setLoading(false);
       }
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

@@ -6,69 +6,43 @@ import { MdCardMembership, MdHistory } from "react-icons/md";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { RiCoupon3Line, RiDashboardLine } from "react-icons/ri";
 import { AiOutlineNotification } from "react-icons/ai";
-import useUserData from "../../../hooks/useUserData";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../context/AuthContext";
 
 const DashboardMenu = ({ closeMenu }) => {
-  const { users, loading, error } = useUserData();
-  const { user: loggedInUser } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    if (users && loggedInUser?.email) {
-      const matchedUser = users.find((user) => user.email === loggedInUser.email);
-      if (matchedUser) {
-        setCurrentUser(matchedUser);
-      }
-    }
-  }, [users, loggedInUser]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error loading user data</div>;
-  if (!currentUser) return <div>User not found</div>;
-
-  const role  = currentUser.role;
+ const isAdmin = true;
+ const isMember = false;
+ const isOwnwer = false;
 
   // Common links for all users
   const links = [
     { to: "/dashboard/home", icon: <RiDashboardLine />, value: "Dashboard" },
+    { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
+    { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
   ];
 
-  // User-specific links
-  if (role === "user") {
-    links.push(
-      { to: "/dashboard/profile", icon: <FiUser />, value: "Profile" },
-      { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
-    );
-  }
 
   // Member-specific links
-  if (role === "member") {
+  if (isAdmin) {
     links.push(
-      { to: "/dashboard/profile", icon: <FiUser />, value: "Profile" },
-      { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },
-      { to: "/dashboard/payment-history", icon: <MdHistory />, value: "Payment History" },
-      { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
-    );
-  }
-
-  // Admin-specific links
-  if (role === "admin") {
-    links.push(
-      { to: "/dashboard/profile", icon: <FiUser />, value: "Profile" },
-      { to: "/dashboard/manage-members", icon: <MdCardMembership />, value: "Manage Members" },
+      { to: "/dashboard/manage-user", icon: <MdCardMembership />, value: "Manage User" },
       { to: "/dashboard/make-announcements", icon: <AiOutlineNotification />, value: "Make Announcements" },
       { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
       { to: "/dashboard/manage-coupons", icon: <RiCoupon3Line />, value: "Manage Coupons" }
     );
   }
 
-  // Owner-specific links
-  if (role === "owner") {
+  // Admin-specific links
+  if (isMember) {
     links.push(
-      { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
-      { to: "/dashboard/manage-user", icon: <MdCardMembership />, value: "Manage User" }
+      { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },
+      { to: "/dashboard/payment-history", icon: <MdHistory />, value: "Payment History" },
+
+    );
+  }
+
+  // Owner-specific links
+  if (isOwnwer) {
+    links.push(
+      { to: "/dashboard/manage-user", icon: <MdCardMembership />, value: "Manage User" },
     );
   }
 
