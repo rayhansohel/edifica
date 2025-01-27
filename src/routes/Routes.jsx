@@ -18,6 +18,7 @@ import ManageUser from "../pages/Dashboard/Owner/ManageUser/ManageUser";
 import Profile from "../pages/Dashboard/Owner/Profile/Profile";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests/AgreementRequests";
+import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
 
 const Routes = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ const Routes = createBrowserRouter([
       { path: "user-profile", element: <UserProfile /> },
       { path: "announcements", element: <Announcements /> },
       { path: "manage-members", element: <ManageMembers /> },
+      { path: "manage-coupons", element: <ManageCoupons /> },
     ],
   },
 ]);

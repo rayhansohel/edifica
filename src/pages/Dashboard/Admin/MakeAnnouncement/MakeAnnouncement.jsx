@@ -72,7 +72,6 @@ const MakeAnnouncement = () => {
     return <div>Error fetching announcements!</div>;
   }
 
-
   return (
     <div className="p-4 flex flex-col gap-4">
       <Helmet>
@@ -118,7 +117,7 @@ const MakeAnnouncement = () => {
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
               <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
-                serial
+                #
               </th>
               <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
                 Title
