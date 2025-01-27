@@ -84,7 +84,7 @@ const UserProfile = () => {
         </div>
       </div>
 
-      <div className="bg-base-200 rounded-box flex flex-col items-center justify-center p-8 text-center flex-grow">
+      <div className="bg-base-200 rounded-box flex flex-col items-center justify-center p-8 text-center">
         {agreementData ? (
           agreementData.status?.toLowerCase() === "pending" ? (
             <div className="space-y-4">

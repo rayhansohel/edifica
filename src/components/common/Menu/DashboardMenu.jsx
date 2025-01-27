@@ -32,7 +32,7 @@ const DashboardMenu = ({ closeMenu }) => {
   if (isAdmin) {
     links.push(
       { to: "/dashboard/manage-member", icon: <MdCardMembership />, value: "Manage Member" },
-      { to: "/dashboard/make-announcements", icon: <AiOutlineNotification />, value: "Make Announcements" },
+      { to: "/dashboard/make-announcement", icon: <AiOutlineNotification />, value: "Make Announcement" },
       { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
       { to: "/dashboard/manage-coupons", icon: <RiCoupon3Line />, value: "Manage Coupons" }
     );
