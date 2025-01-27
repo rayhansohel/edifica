@@ -2,12 +2,13 @@ import { useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
-import { MdDeleteForever } from "react-icons/md";
+import { Helmet } from "react-helmet-async";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
 
-  // Fetch all members from the database
+  // Fetch all members with role 'Member' from the database
   const {
     data: members = [],
     refetch,
@@ -16,8 +17,8 @@ const ManageMembers = () => {
   } = useQuery({
     queryKey: ["members"],
     queryFn: async () => {
-      const response = await axiosSecure.get("/users");
-      return response.data;
+      const res = await axiosSecure.get("/users");
+      return res.data.filter(user => user.role === "member");
     },
   });
 
@@ -28,14 +29,15 @@ const ManageMembers = () => {
     }
   }, [isError, error]);
 
-  // Handle remove member (change role to "user")
-  const mutation = useMutation({
-    mutationFn: async (id) => {
-      await axiosSecure.delete(`/users/${id}`);
+  // Handle remove member
+  const removeMember = useMutation({
+    mutationFn: async ({ id, name }) => {
+      await axiosSecure.patch(`/users/role/${id}`, { role: "user" });
+      return name;
     },
-    onSuccess: () => {
+    onSuccess: (name) => {
       refetch();
-      toast.success("Member removed successfully.");
+      toast.success(`${name} removed from members successfully.`);
     },
     onError: () => {
       toast.error("Failed to remove member.");
@@ -43,39 +45,53 @@ const ManageMembers = () => {
   });
 
   return (
-    <div className="p-6 flex flex-col gap-4">
-      <div className="bg-base-200 p-4 rounded-xl">
-        <h2 className="text-xl font-semibold text-accent text-center">
-          Manage Member
+    <div className="p-4 flex flex-col gap-4">
+      <Helmet>
+        <title>Manage Members - Edifica</title>
+      </Helmet>
+      <div className="bg-base-200 py-4 px-6 rounded-xl flex justify-between items-center text-accent">
+        <h2 className="text-xl font-semibold">Manage Members</h2>
+        <h2 className="text-xl font-semibold">
+          Total Members: <span>{members.length}</span>
         </h2>
       </div>
-      <div className="overflow-x-auto rounded-box">
+      <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
         <table className="table w-full border-collapse border border-base-100 rounded-lg">
-          <thead>
-            <tr className="bg-base-300 text-accent text-base">
-              <th className="border-b border-base-100 px-4 py-2">Serial</th>
-              <th className="border-b border-base-100 px-4 py-2">Name</th>
-              <th className="border-b border-base-100 px-4 py-2">Email</th>
-              <th className="border-b border-base-100 px-4 py-2">Role</th>
-              <th className="border-b border-base-100 px-4 py-2">Actions</th>
+          <thead className="sticky -top-[1px] bg-base-300 z-20">
+            <tr className="text-base text-primary">
+              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                Name
+              </th>
+              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                Email
+              </th>
+              <th className="border border-base-100 px-6 py-3 whitespace-nowrap w-20">
+                Remove
+              </th>
             </tr>
           </thead>
           <tbody>
-            {members.map((member, index) => (
+            {members.map((member) => (
               <tr
-                key={member.email}
-                className="bg-base-200 hover:bg-base-300 transition-colors duration-600"
+                key={member._id}
+                className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
               >
-                <td className="border-b border-base-100 px-4 py-2">{index+1}</td>
-                <td className="border-b border-base-100 px-4 py-2">{member.name}</td>
-                <td className="border-b border-base-100 px-4 py-2">{member.email}</td>
-                <td className="border-b border-base-100 px-4 py-2">User</td>
-                <td className="border-b border-base-100 px-4 py-2">
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                  {member.name}
+                </td>
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                  {member.email}
+                </td>
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   <button
-                    onClick={() => mutation.mutate(member._id)}
-                    className="text-rose-600 hover:text-rose-800 text-xl"
+                    onClick={() =>
+                      removeMember.mutate({ id: member._id, name: member.name })
+                    }
+                    className="w-full"
                   >
-                    <MdDeleteForever />
+                    <div className="hover:text-rose-800 text-2xl flex items-center justify-center">
+                      <MdOutlineDeleteForever />
+                    </div>
                   </button>
                 </td>
               </tr>

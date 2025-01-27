@@ -4,12 +4,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { Helmet } from "react-helmet-async";
-import Lottie from "lottie-react";
-import loadingAnimation from "../../assets/animations/Loading.json";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useAuth } from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import LoadingAnimation from "../../components/common/Loading/LoadingAnimation";
 
 const Apartment = () => {
   const [rentRange, setRentRange] = useState({ min: 0, max: 10000 });
@@ -84,13 +83,7 @@ const Apartment = () => {
   };
 
   if (isLoading)
-    return (
-      <div className="container mx-auto w-full">
-        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          <Lottie animationData={loadingAnimation} className="w-20" />
-        </div>
-      </div>
-    );
+    return <LoadingAnimation />
   if (error)
     return (
       <div className="container mx-auto w-full ">

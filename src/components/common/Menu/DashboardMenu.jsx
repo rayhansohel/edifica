@@ -6,8 +6,10 @@ import { MdCardMembership, MdHistory } from "react-icons/md";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { RiCoupon3Line, RiDashboardLine } from "react-icons/ri";
 import { AiOutlineNotification } from "react-icons/ai";
+import { useAuth } from "../../../context/AuthContext";
 
 const DashboardMenu = ({ closeMenu }) => {
+ const { user } = useAuth();
  const isAdmin = true;
  const isMember = false;
  const isOwnwer = false;
@@ -15,15 +17,21 @@ const DashboardMenu = ({ closeMenu }) => {
   // Common links for all users
   const links = [
     { to: "/dashboard/home", icon: <RiDashboardLine />, value: "Dashboard" },
-    { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
-    { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
   ];
+
+    // Userspecific links
+    if (user) {
+      links.push(
+        { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
+        { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
+      );
+    }
 
 
   // Member-specific links
   if (isAdmin) {
     links.push(
-      { to: "/dashboard/manage-user", icon: <MdCardMembership />, value: "Manage User" },
+      { to: "/dashboard/manage-member", icon: <MdCardMembership />, value: "Manage Member" },
       { to: "/dashboard/make-announcements", icon: <AiOutlineNotification />, value: "Make Announcements" },
       { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
       { to: "/dashboard/manage-coupons", icon: <RiCoupon3Line />, value: "Manage Coupons" }

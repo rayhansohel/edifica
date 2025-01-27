@@ -4,9 +4,8 @@ import ProfilePlaceholder from "../../../../assets/images/profile-placeholder.pn
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
-import Lottie from "lottie-react";
-import loadingAnimation from "../../../../assets/animations/Loading.json";
 import { useNavigate } from "react-router-dom";
+import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -42,11 +41,7 @@ const Profile = () => {
   };
 
   if (isLoading)
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Lottie animationData={loadingAnimation} className="w-20" />
-      </div>
-    );
+    return <LoadingAnimation />
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-49px)] md:min-h-screen space-y-4 p-4">

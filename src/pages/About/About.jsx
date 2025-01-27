@@ -1,40 +1,28 @@
 import { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import SectionTitle from "../../components/common/SectionTitle/SectionTitle";
 import Marquee from "react-fast-marquee";
 import ThemeContext from "../../context/ThemeContext";
 import Faqs from "../../components/common/Faq/Faqs";
 import { Helmet } from "react-helmet-async";
-import Lottie from "lottie-react";
-import loadingAnimation from "../../assets/animations/Loading.json";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import LoadingAnimation from "../../components/common/Loading/LoadingAnimation";
 
-const fetchApartments = async () => {
-  const response = await axios.get("http://localhost:5000/all-apartments");
-  return response.data;
-};
 
 const About = () => {
   const { theme } = useContext(ThemeContext);
+  const axiosPublic = useAxiosPublic();
 
-  // Use TanStack Query to fetch apartments data
-  const {
-    data: apartments = [],
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["apartments"],
-    queryFn: fetchApartments, 
-  });
+const { data: apartments = [], isLoading, error } = useQuery({
+  queryKey: ["apartments"],
+  queryFn: async () => {
+    const response = await axiosPublic.get("/all-apartments");
+    return response.data;
+  },
+});
 
   if (isLoading)
-    return (
-      <div className="container mx-auto w-full">
-        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          <Lottie animationData={loadingAnimation} className="w-20" />
-        </div>
-      </div>
-    );
+    return <LoadingAnimation />
 
   if (error)
     return (
@@ -85,8 +73,9 @@ const About = () => {
                       Sustainable Design
                     </h3>
                     <p>
-                      Equipped with eco-friendly materials, building is designed to
-                      minimize environmental impact while maximizing efficiency.
+                      Equipped with eco-friendly materials, building is designed
+                      to minimize environmental impact while maximizing
+                      efficiency.
                     </p>
                   </div>
                   {/* Feature 3 */}

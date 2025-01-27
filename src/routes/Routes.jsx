@@ -49,6 +49,7 @@ const Routes = createBrowserRouter([
       { path: "home", element: <Dashboard /> },
       { path: "profile", element: <Profile /> },
       { path: "manage-user", element: <ManageUser /> },
+      { path: "manage-member", element: <ManageMembers /> },
       { path: "user-profile", element: <UserProfile /> },
       { path: "announcements", element: <Announcements /> },
       { path: "manage-members", element: <ManageMembers /> },
