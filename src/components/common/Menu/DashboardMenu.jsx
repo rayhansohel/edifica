@@ -34,6 +34,7 @@ const DashboardMenu = ({ closeMenu }) => {
       { to: "/dashboard/announcements", icon: <IoNotificationsOutline />, value: "Announcements" },
       { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },
       { to: "/dashboard/payment-history", icon: <MdHistory />, value: "Payment History" },
+      { to: "/dashboard/manage-coupons", icon: <MdHistory />, value: "Manage Coupon" },
     );
   }
 
@@ -43,6 +44,7 @@ const DashboardMenu = ({ closeMenu }) => {
       { to: "/dashboard/admin-profile", icon: <LiaUserShieldSolid />, value: "My Profile" },
       { to: "/dashboard/manage-member", icon: <RiPoliceBadgeLine />, value: "Manage Member" },
       { to: "/dashboard/make-announcement", icon: <PiNotePencilDuotone />, value: "Make Announcement" },
+      { to: "/dashboard/manage-coupons", icon: <MdHistory />, value: "Manage Coupon" },
       { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
     );
   }

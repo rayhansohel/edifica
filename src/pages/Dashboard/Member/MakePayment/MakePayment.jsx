@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useAuth } from "../../../../context/AuthContext";
-import LoadingAnimation from "./../../../../components/common/Loading/LoadingAnimation";
+import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
 
 const MakePayment = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,35 +18,31 @@ const MakePayment = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
-  // List of months for the dropdown
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
   ];
-
-  // Generate a list of years (e.g., 2023, 2024, etc.)
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 10 }, (_, index) => currentYear + index);
 
   // Fetch user agreement details
   useEffect(() => {
-    if (user?.email) {
-      axiosPublic
-        .get(`/agreement/${user.email}`)
-        .then(({ data }) => setAgreement(data))
-        .catch((error) => console.error("Error fetching agreement:", error));
-    }
-  }, [user?.email, axiosPublic]);
+    if (!user?.email) return; // Ensure email exists before making the API call
+
+    axiosPublic
+      .get(`/agreement/${user.email}`)
+      .then(({ data }) => {
+        if (data) {
+          setAgreement(data);
+        } else {
+          toast.error("No agreement data found.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching agreement:", error);
+        toast.error("Failed to fetch agreement data.");
+      });
+  }, [user?.email]);
 
   // Apply Coupon Handler
   const handleApplyCoupon = async () => {
@@ -57,9 +53,8 @@ const MakePayment = () => {
     setIsApplyingCoupon(true);
 
     try {
-      const { data } = await axiosPublic.post("/coupons/validate", {
-        couponCode,
-      });
+      const { data } = await axiosPublic.post("/coupons/validate", { couponCode });
+
       if (data.valid) {
         const discountAmount = (agreement.rent * data.discount) / 100;
         setDiscount(discountAmount);
@@ -110,6 +105,15 @@ const MakePayment = () => {
       console.error(error);
     }
   };
+
+  // Show Loading Animation if agreement data is not loaded
+  if (!agreement) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingAnimation />
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-49px)] md:min-h-screen">
