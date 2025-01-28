@@ -85,6 +85,7 @@ const Apartment = () => {
 
   if (isLoading)
     return <LoadingAnimation />
+    
   if (error)
     return (
       <div className="container mx-auto w-full ">

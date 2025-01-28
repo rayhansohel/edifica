@@ -22,15 +22,16 @@ const DashboardMenu = ({ closeMenu }) => {
     // Userspecific links
     if (user) {
       links.push(
-        { to: "/dashboard/profile", icon: <FiUser />, value: "My Profile" },
+        { to: "/dashboard/profile", icon: <FiUser />, value: "Profile" },
         { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
       );
     }
 
 
-  // Member-specific links
+  // Admin-specific links
   if (isAdmin) {
     links.push(
+      { to: "/dashboard/admin-profile", icon: <MdCardMembership />, value: "Admin Profile" },
       { to: "/dashboard/manage-member", icon: <MdCardMembership />, value: "Manage Member" },
       { to: "/dashboard/make-announcement", icon: <AiOutlineNotification />, value: "Make Announcement" },
       { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
@@ -38,7 +39,7 @@ const DashboardMenu = ({ closeMenu }) => {
     );
   }
 
-  // Admin-specific links
+  // Member-specific links
   if (isMember) {
     links.push(
       { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },

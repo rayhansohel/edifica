@@ -1,26 +1,19 @@
 import { useEffect } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import useUsers from "../../../../hooks/useUsers";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
-
-  // Fetch all members with role 'Member' from the database
-  const {
-    data: members = [],
-    refetch,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["members"],
-    queryFn: async () => {
-      const res = await axiosSecure.get("/users");
-      return res.data.filter((user) => user.role === "member");
-    },
-  });
+  
+  // Use the custom hook to fetch users
+  const { users, isError, error, refetch } = useUsers();
+  
+  // Filter members by their role 'member'
+  const members = users?.filter((user) => user.role === "member") || [];
 
   useEffect(() => {
     if (isError) {

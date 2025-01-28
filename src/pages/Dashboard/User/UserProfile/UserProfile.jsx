@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
 
-const UserProfile = () => {
+const Profile = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
@@ -48,13 +48,6 @@ const UserProfile = () => {
       <Helmet>
         <title>Profile - Edifica</title>
       </Helmet>
-
-      <div className="bg-base-200 p-4 rounded-xl">
-        <h2 className="text-xl font-semibold text-accent text-center">
-          My Profile
-        </h2>
-      </div>
-
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
         <div className="flex gap-4 bg-base-200 p-4 rounded-box lg:col-span-2 xl:col-span-1">
           <img
@@ -63,7 +56,9 @@ const UserProfile = () => {
             className="w-24 h-24 rounded-xl border border-base-300"
           />
           <div className="flex flex-col">
-            <h3 className="text-2xl font-medium">{profileData.name}</h3>
+            <h3 className="text-2xl font-medium">
+              {profileData.name}
+            </h3>
             <h3>{profileData.email}</h3>
           </div>
         </div>
@@ -77,14 +72,20 @@ const UserProfile = () => {
         <div className="bg-base-200 p-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Apartment Information</h3>
           <ul>
-            <li>Floor: {profileData.apartmentInfo.floor}</li>
-            <li>Block: {profileData.apartmentInfo.block}</li>
-            <li>Room No: {profileData.apartmentInfo.roomNo}</li>
+            <li>
+              Floor: {profileData.apartmentInfo.floor}
+            </li>
+            <li>
+              Block: {profileData.apartmentInfo.block}
+            </li>
+            <li>
+              Room No: {profileData.apartmentInfo.roomNo}
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="bg-base-200 rounded-box flex flex-col items-center justify-center p-8 text-center">
+      <div className="bg-base-200 rounded-box flex flex-col items-center justify-center p-8 text-center flex-grow">
         {agreementData ? (
           agreementData.status?.toLowerCase() === "pending" ? (
             <div className="space-y-4">
@@ -101,7 +102,7 @@ const UserProfile = () => {
                 Congratulations! We are glad to have you with us.
               </h3>
               <h3>
-                Welcome to your new apartment as a Member! We are delighted to have you with
+                Welcome to your new apartment! We are delighted to have you with
                 us.
               </h3>
             </div>
@@ -109,7 +110,7 @@ const UserProfile = () => {
         ) : (
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-error">
-              No agreement found or Rejected if you applyed.
+              No agreement found.
             </h3>
             <h3>
               Please visit the apartments page to choose an apartment and
@@ -128,4 +129,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default Profile;

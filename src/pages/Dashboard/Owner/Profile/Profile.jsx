@@ -49,11 +49,11 @@ const Profile = () => {
         <title>Profile - Edifica</title>
       </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-        <div className="flex gap-4 bg-base-200 p-4 rounded-box lg:col-span-2 xl:col-span-1">
+        <div className="flex gap-4 items-center bg-base-200 p-4 rounded-box lg:col-span-2 xl:col-span-1">
           <img
             src={profileData.profilePicture}
             alt="User Profile"
-            className="w-24 h-24 rounded-xl border border-base-300"
+            className="w-24 h-24 rounded-full border border-base-300"
           />
           <div className="flex flex-col">
             <h3 className="text-2xl font-medium">
@@ -63,13 +63,13 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="bg-base-200 p-4 rounded-box col-span-1">
+        <div className="bg-base-200 p-4 rounded-box col-span-1 justify-center">
           <h3 className="text-lg font-semibold mb-2">Agreement Information</h3>
           <h3>Accept Status: {profileData.agreementStatus}</h3>
           <h3>Accept Date: {profileData.agreementDate}</h3>
         </div>
 
-        <div className="bg-base-200 p-4 rounded-box col-span-1">
+        <div className="bg-base-200 p-4 rounded-box col-span-1 justify-center">
           <h3 className="text-lg font-semibold mb-2">Apartment Information</h3>
           <ul>
             <li>

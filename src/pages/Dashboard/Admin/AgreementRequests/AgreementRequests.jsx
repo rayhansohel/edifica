@@ -57,7 +57,13 @@ const AgreementRequests = () => {
   }
 
   if (error) {
-    return <div>Error fetching agreement requests!</div>;
+    return (
+      <div className="container mx-auto w-full ">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
+        Error fetching agreement requests!
+        </div>
+      </div>
+    );
   }
 
   return (

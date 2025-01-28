@@ -19,6 +19,7 @@ import Profile from "../pages/Dashboard/Owner/Profile/Profile";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests/AgreementRequests";
 import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
 
 const Routes = createBrowserRouter([
   {
@@ -47,10 +48,11 @@ const Routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    errorElement: <Error404 />,
+    // errorElement: <Error404 />,
     children: [
       { path: "home", element: <Dashboard /> },
       { path: "profile", element: <Profile /> },
+      { path: "admin-profile", element: <AdminProfile /> },
       { path: "manage-user", element: <ManageUser /> },
       { path: "manage-member", element: <ManageMembers /> },
       { path: "make-announcement", element: <MakeAnnouncement /> },

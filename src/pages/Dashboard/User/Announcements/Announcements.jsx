@@ -23,7 +23,13 @@ const Announcements = () => {
   }
 
   if (error) {
-    return <div>Error fetching announcements!</div>;
+    return (
+      <div className="container mx-auto w-full ">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
+        Error fetching announcements!
+        </div>
+      </div>
+    );
   }
 
   // Function to format the date
