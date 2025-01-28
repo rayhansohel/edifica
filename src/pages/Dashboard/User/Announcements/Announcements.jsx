@@ -53,7 +53,7 @@ const Announcements = () => {
       <div className="bg-base-200 py-4 px-6 rounded-xl flex justify-between items-center text-accent">
         <h2 className="text-base md:text-xl font-semibold">Announcements</h2>
         <h2 className="text-base md:text-xl font-semibold">
-          Total Announcements: <span>{announcements.length}</span>
+          Total: <span>{announcements.length}</span>
         </h2>
       </div>
 

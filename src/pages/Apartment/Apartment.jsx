@@ -18,7 +18,7 @@ const Apartment = () => {
   const location = useLocation();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth(); 
+  const { user } = useAuth();
 
   // Fetch apartments data
   const {
@@ -50,7 +50,7 @@ const Apartment = () => {
         status: "Pending",
         requestDate: new Date().toISOString(),
       };
-  
+
       try {
         const response = await axiosSecure.post("/agreement", agreement);
         console.log(response);
@@ -66,8 +66,6 @@ const Apartment = () => {
       navigate("/login", { state: { from: location }, replace: true });
     }
   };
-  
-  
 
   // Pagination handlers
   const handlePrevPage = () => {
@@ -83,9 +81,8 @@ const Apartment = () => {
     setRentRange({ min: 0, max: 10000 });
   };
 
-  if (isLoading)
-    return <LoadingAnimation />
-    
+  if (isLoading) return <LoadingAnimation />;
+
   if (error)
     return (
       <div className="container mx-auto w-full ">
@@ -168,9 +165,16 @@ const Apartment = () => {
               <p>Rent: ${apartment.rent}</p>
               <button
                 onClick={() => handleAgreement(apartment)}
-                className="btn btn-sm btn-accent mt-4"
+                className={`btn btn-sm mt-4 ${
+                  apartment.availability === "rented"
+                    ? "btn-disabled"
+                    : "btn-accent"
+                }`}
+                disabled={apartment.availability === "rented"}
               >
-                Apply for Agreement
+                {apartment.availability === "rented"
+                  ? "Already Rented"
+                  : "Apply for Agreement"}
               </button>
             </div>
           </div>

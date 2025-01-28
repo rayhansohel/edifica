@@ -108,7 +108,7 @@ const { data: apartments = [], isLoading, error } = useQuery({
         {/* Section 2: Image Marquee */}
         <section className="pb-8 md:pb-20 container mx-auto px-4">
           <SectionTitle
-            title="Image Gallery"
+            title="Photo Gallery"
             subtitle="See and choose your dream"
           />
           {apartments.length > 0 ? (

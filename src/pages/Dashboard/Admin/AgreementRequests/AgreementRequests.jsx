@@ -25,7 +25,7 @@ const AgreementRequests = () => {
   const acceptRequest = useMutation({
     mutationFn: async (email) => {
       await axiosSecure.patch(`/agreement?email=${email}`, {
-        status: "accepted",
+        status: "done",
       });
       await axiosSecure.patch(`/users/role?email=${email}`, { role: "member" });
     },

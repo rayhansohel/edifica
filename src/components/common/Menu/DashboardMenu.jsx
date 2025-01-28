@@ -12,7 +12,6 @@ const DashboardMenu = ({ closeMenu }) => {
  const { user } = useAuth();
  const isAdmin = true;
  const isMember = false;
- const isOwnwer = false;
 
   // Common links for all users
   const links = [
@@ -22,22 +21,10 @@ const DashboardMenu = ({ closeMenu }) => {
     // Userspecific links
     if (user) {
       links.push(
-        { to: "/dashboard/profile", icon: <FiUser />, value: "Profile" },
+        { to: "/dashboard/user-profile", icon: <FiUser />, value: "My Profile" },
         { to: "/dashboard/announcements", icon: <TbNotification />, value: "Announcements" }
       );
     }
-
-
-  // Admin-specific links
-  if (isAdmin) {
-    links.push(
-      { to: "/dashboard/admin-profile", icon: <MdCardMembership />, value: "Admin Profile" },
-      { to: "/dashboard/manage-member", icon: <MdCardMembership />, value: "Manage Member" },
-      { to: "/dashboard/make-announcement", icon: <AiOutlineNotification />, value: "Make Announcement" },
-      { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
-      { to: "/dashboard/manage-coupons", icon: <RiCoupon3Line />, value: "Manage Coupons" }
-    );
-  }
 
   // Member-specific links
   if (isMember) {
@@ -48,10 +35,15 @@ const DashboardMenu = ({ closeMenu }) => {
     );
   }
 
-  // Owner-specific links
-  if (isOwnwer) {
+  // Admin-specific links
+  if (isAdmin) {
     links.push(
+      { to: "/dashboard/admin-profile", icon: <MdCardMembership />, value: "Admin Profile" },
       { to: "/dashboard/manage-user", icon: <MdCardMembership />, value: "Manage User" },
+      { to: "/dashboard/manage-member", icon: <MdCardMembership />, value: "Manage Member" },
+      { to: "/dashboard/make-announcement", icon: <AiOutlineNotification />, value: "Make Announcement" },
+      { to: "/dashboard/agreement-requests", icon: <IoNewspaperOutline />, value: "Agreement Requests" },
+      { to: "/dashboard/manage-coupons", icon: <RiCoupon3Line />, value: "Manage Coupons" }
     );
   }
 
