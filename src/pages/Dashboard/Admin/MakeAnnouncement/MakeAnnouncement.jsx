@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
 
 const MakeAnnouncement = () => {
   const axiosSecure = useAxiosSecure();
@@ -65,11 +66,17 @@ const MakeAnnouncement = () => {
 
   // Handle loading and error states
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingAnimation />;
   }
 
   if (error) {
-    return <div>Error fetching announcements!</div>;
+    return (
+      <div className="container mx-auto w-full ">
+        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
+          Error fetching announcements!
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -103,7 +110,7 @@ const MakeAnnouncement = () => {
             onChange={(e) => setDescription(e.target.value)}
             className="textarea w-full rounded-md"
             placeholder="Enter description"
-            rows="8"
+            rows="6"
           ></textarea>
         </div>
         <button type="submit" className="btn btn-sm btn-accent w-fit">
@@ -112,8 +119,8 @@ const MakeAnnouncement = () => {
       </form>
 
       {/* Announcement List */}
-      <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-108px)] rounded-box bg-base-300 ">
-        <table className="table w-full border-collapse border border-base-100 rounded-lg">
+      <div className="overflow-x-auto overflow-y-auto h-[calc(100vh-476px)] rounded-box bg-base-200 ">
+        <table className="table w-full border-collapse border border-base-100 rounded-lg ">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
               <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
@@ -125,10 +132,10 @@ const MakeAnnouncement = () => {
               <th className="border border-base-100 px-6 py-3 min-w-96">
                 Description
               </th>
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+              <th className="border border-base-100 px-6 py-3 whitespace-nowrap text-center">
                 Date
               </th>
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+              <th className="border border-base-100 px-6 py-3 whitespace-nowrap text-center">
                 Actions
               </th>
             </tr>
@@ -140,7 +147,7 @@ const MakeAnnouncement = () => {
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
               >
                 {" "}
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-200 text-center">
                   {index + 1}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
@@ -149,16 +156,18 @@ const MakeAnnouncement = () => {
                 <td className="border border-base-100 px-6 py-3">
                   {announcement.description}
                 </td>
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap text-center">
                   {new Date(announcement.createdAt).toLocaleDateString()}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                  <div
+                  <button
                     onClick={() => deleteAnnouncement.mutate(announcement._id)}
-                    className="hover:text-rose-800 text-2xl flex items-center justify-center"
+                    className="w-full"
                   >
-                    <MdOutlineDeleteForever />
-                  </div>
+                    <div className="hover:text-rose-800 text-2xl flex items-center justify-center">
+                      <MdOutlineDeleteForever />
+                    </div>
+                  </button>
                 </td>
               </tr>
             ))}

@@ -122,7 +122,7 @@ const ManageCoupons = () => {
         </button>
       </div>
 
-      <div className="overflow-x-auto rounded-box bg-base-300">
+      <div className="overflow-x-auto h-[calc(100vh-112px)] overflow-y-auto rounded-box bg-base-200">
         <table className="table-auto w-full border-collapse border border-base-100 rounded-lg text-center">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
@@ -154,7 +154,7 @@ const ManageCoupons = () => {
                   !coupon.available && "text-secondary"
                 }`}
               >
-                <td className="border border-base-100 bg-base-300 px-6 py-3 sticky -left-[1px] z-10">
+                <td className="border border-base-100 bg-base-200 px-6 py-3 sticky -left-[1px] z-10">
                   {index + 1}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
@@ -175,7 +175,7 @@ const ManageCoupons = () => {
                       handleToggleAvailability(coupon._id, !coupon.available)
                     }
                     className={`btn btn-sm min-w-24 ${
-                      coupon.available ? "btn-error" : "btn-primary"
+                      coupon.available ? "btn-accent" : "btn-secondary"
                     }`}
                   >
                     {coupon.available ? "Deactivate" : "Activate"}

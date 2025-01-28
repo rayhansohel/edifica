@@ -48,7 +48,7 @@ const UserProfile = () => {
         <title>Profile - Edifica</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex gap-4 items-center bg-base-200 px-8 py-4 rounded-box lg:col-span-2">
+        <div className="flex gap-4 items-center bg-base-200 px-8 py-4 rounded-box md:col-span-2">
           <img
             src={profileData.profilePicture}
             alt="User Profile"

@@ -68,7 +68,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Form Section */}
-        <div className="col-span-1 md:col-span-2 border border-base-300 p-8 rounded-box">
+        <div className="col-span-1 md:col-span-2 bg-base-200 p-8 rounded-box">
           <form>
             <div className="space-y-4">
               <div>
@@ -76,7 +76,7 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
-                  className="input input-sm w-full rounded-md bg-base-200"
+                  className="input input-sm w-full rounded-md bg-base-100"
                   placeholder="Your Name"
                   required
                 />
@@ -86,7 +86,7 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
-                  className="input input-sm w-full rounded-md bg-base-200"
+                  className="input input-sm w-full rounded-md bg-base-100"
                   placeholder="Your Email"
                   required
                 />
@@ -95,7 +95,7 @@ const Contact = () => {
                 <textarea
                   id="message"
                   name="message"
-                  className="textarea w-full rounded-md bg-base-200"
+                  className="textarea w-full rounded-md bg-base-100"
                   placeholder="Type your message here..."
                   rows="5"
                   required
@@ -104,7 +104,7 @@ const Contact = () => {
               <div className="flex justify-end">
                 <button
                   type="submit"
-                  className="btn btn-sm btn-primary"
+                  className="btn btn-sm btn-accent"
                 >
                   Send Message
                 </button>
@@ -121,7 +121,7 @@ const Contact = () => {
           subtitle="Find us in the heart of the city"
         />
         <div className="container mx-auto px-4 mt-4">
-          <div className="mt-4 rounded-box overflow-hidden bg-base-200">
+          <div className="mt-4 rounded-box overflow-hidden bg-base-100">
             <Iframe
               url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5362.455986141798!2d90.38611587424055!3d23.868753380539204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c410ec3b89c7%3A0xf55205f7f62d521d!2sUttara%20Sector%2013%20Park!5e0!3m2!1sen!2sbd!4v1737212202793!5m2!1sen!2sbd"
               width="100%"

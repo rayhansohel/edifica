@@ -1,23 +1,23 @@
 /* eslint-disable react/prop-types */
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import useAdmin from "../hooks/useAdmin";
+import useUserRole from "../hooks/useUserRole";
 import LoadingAnimation from "../components/common/Loading/LoadingAnimation";
 
-const AdminRoute = ({ children }) => {
+const MemberRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  const [isAdmin, isAdminLoading] = useAdmin();
+  const { data: role, isLoading } = useUserRole();
   const location = useLocation();
 
-  if (loading || isAdminLoading) {
+  if (loading || isLoading) {
     return <LoadingAnimation />;
   }
 
-  if (user && isAdmin) {
+  if (user && role === "member") {
     return children;
   }
 
   return <Navigate to="/" state={{ from: location }} replace />;
 };
 
-export default AdminRoute;
+export default MemberRoute;

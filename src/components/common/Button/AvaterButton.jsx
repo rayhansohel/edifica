@@ -6,11 +6,15 @@ import { BiLogOutCircle } from "react-icons/bi";
 import LoginButton from "./LoginButton";
 import { RiDashboardLine } from "react-icons/ri";
 import UserCard from "../Card/UserCard";
+import useUserRole from "../../../hooks/useUserRole"; // Hook to fetch user role
 
-const AvaterButton = () => {
+const AvatarButton = () => {
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
+
+  // Fetch user role from custom hook
+  const { data: role, isLoading } = useUserRole(); // Assuming `useUserRole` returns { data, isLoading }
 
   useEffect(() => {
     const auth = getAuth();
@@ -44,7 +48,7 @@ const AvaterButton = () => {
       setShowDropdown(false);
     }
   };
-  
+
   useEffect(() => {
     if (showDropdown) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -76,7 +80,13 @@ const AvaterButton = () => {
               <ul>
                 <li>
                   <Link
-                    to="/dashboard/home"
+                    to={
+                      isLoading
+                        ? "#" // Prevents navigation while loading
+                        : role === "admin"
+                        ? "/dashboard/admin-profile"
+                        : "/dashboard/profile"
+                    }
                     className="p-2 flex items-center gap-2 hover:bg-base-300 rounded-md"
                   >
                     <RiDashboardLine className="text-lg" />
@@ -103,4 +113,4 @@ const AvaterButton = () => {
   );
 };
 
-export default AvaterButton;
+export default AvatarButton;

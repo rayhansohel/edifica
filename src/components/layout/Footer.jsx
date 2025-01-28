@@ -8,7 +8,7 @@ import SocialLinks from "../common/SocialLinks/SocialLinks";
 
 const Footer = () => {
   return (
-    <div className="min-h-20 bg-base-200 border-t border-base-300 pt-8">
+    <div className="min-h-20 bg-secondary border-t border-base-300 pt-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
           <div className="rounded-box border border-base-300 p-6 space-y-4">

@@ -2,15 +2,15 @@
 import { NavLink } from "react-router-dom";;
 import { PiBuildingsBold } from "react-icons/pi";
 import { GoHome } from "react-icons/go";
-import { LuContactRound } from "react-icons/lu";
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import { RxComponent1 } from "react-icons/rx";
+import { RiContactsLine } from "react-icons/ri";
 
 const MainMenu = ( {closeMenu} ) => {
   const links = [
     { to: "/", icon: <GoHome />, value: "Home" },
     { to: "/apartment", icon: <PiBuildingsBold />, value: "Apartments" },
-    { to: "/about", icon: <LuContactRound />, value: "About" },
-    { to: "/contact", icon: <MdOutlineAlternateEmail />, value: "Contact" },
+    { to: "/about", icon: <RxComponent1 />, value: "About" },
+    { to: "/contact", icon: <RiContactsLine />, value: "Contact" },
   ];
 
   return (

@@ -50,7 +50,7 @@ const AvailableCoupons = () => {
             coupons.map((coupon) => (
               <div
                 key={coupon._id}
-                className="bg-base-200 p-6 rounded-box hover:shadow-2xl transition-all"
+                className="border border-base-300 p-6 rounded-box transition-all"
               >
                 <h3 className="text-xl font-semibold text-primary mb-4 flex items-center justify-between">
                   <span>{coupon.code}</span>

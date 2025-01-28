@@ -7,7 +7,7 @@ import AvaterButton from "../common/Button/AvaterButton";
 
 const Navbar = () => {
   return (
-    <div className="backdrop-blur bg-base-200/70 border-b border-base-300">
+    <div className="backdrop-blur bg-secondary/80 border-b border-base-300">
       <div className="container mx-auto px-4 flex justify-between items-center min-h-12">
         {/*Mobile Menu*/}
         <div className="lg:hidden min-w-20 ">

@@ -11,8 +11,7 @@ import Register from "../pages/Auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import Announcements from "../pages/Dashboard/User/Announcements/Announcements";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import ManageMembers from "../pages/Dashboard/Admin/ManageMembe/ManageMember";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMember/ManageMember";
 import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests/AgreementRequests";
@@ -21,6 +20,10 @@ import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
 import MakePayment from "../pages/Dashboard/Member/MakePayment/MakePayment";
 import PaymentHistory from '../pages/Dashboard/Member/PaymentHistory/PaymentHistory';
 import ManageUser from "../pages/Dashboard/Owner/ManageUser";
+import AdminRoute from "./AdminRoute";
+import OwnerRoute from "./OwnerRoute";
+import MemberRoute from "./memberRoute";
+import UserRoute from "./userRoute";
 
 const Routes = createBrowserRouter([
   {
@@ -49,24 +52,22 @@ const Routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
-      { path: "home", element: <Dashboard /> },
-
-      { path: "user-profile", element: <UserProfile /> },
-      { path: "announcements", element: <Announcements /> },
-
-      { path: "make-payment", element: <MakePayment /> },
-      { path: "payment-history", element: <PaymentHistory /> },
-
-      { path: "admin-profile", element: <AdminProfile /> },
-      { path: "manage-member", element: <ManageMembers /> },
-      { path: "make-announcement", element: <MakeAnnouncement /> },
-      { path: "agreement-requests", element: <AgreementRequests /> },
-      { path: "manage-coupons", element: <ManageCoupons /> },
-
-      { path: "manage-user", element: <ManageUser /> },
+      // user Route
+      { path: "profile", element: <UserRoute><UserProfile /></UserRoute>  },
+      { path: "announcements", element: <UserRoute><Announcements /></UserRoute>},
+      // member Route
+      { path: "make-payment", element: <MemberRoute><MakePayment /></MemberRoute> },
+      { path: "payment-history", element: <MemberRoute><PaymentHistory /></MemberRoute> },
+      // admin Route
+      { path: "admin-profile", element: <AdminRoute>< AdminProfile /></AdminRoute> },
+      { path: "manage-member", element: <AdminRoute><ManageMembers /></AdminRoute> },
+      { path: "make-announcement", element: <AdminRoute><MakeAnnouncement /></AdminRoute> },
+      { path: "agreement-requests", element: <AdminRoute><AgreementRequests /></AdminRoute> },
+      { path: "manage-coupons", element: <AdminRoute><ManageCoupons /></AdminRoute> },
+      // owner Route
+      { path: "manage-user", element: <OwnerRoute><ManageUser /></OwnerRoute>  },
     ],
   },
 ]);

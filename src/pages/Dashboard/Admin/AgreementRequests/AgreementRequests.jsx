@@ -81,7 +81,7 @@ const AgreementRequests = () => {
         </h2>
       </div>
 
-      <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
+      <div className="overflow-x-auto h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-200">
         <table className="table-auto w-full border-collapse border border-base-100 rounded-lg">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
@@ -120,7 +120,7 @@ const AgreementRequests = () => {
                 key={request._id}
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-300 text-center"
               >
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-200 text-center">
                   {index + 1}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">

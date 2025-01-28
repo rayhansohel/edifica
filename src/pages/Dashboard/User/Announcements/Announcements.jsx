@@ -26,25 +26,14 @@ const Announcements = () => {
     return (
       <div className="container mx-auto w-full ">
         <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-        Error fetching announcements!
+          Error fetching announcements!
         </div>
       </div>
     );
   }
 
-  // Function to format the date
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
-
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-49px)] md:min-h-screen">
       <Helmet>
         <title>Announcements - Edifica</title>
       </Helmet>
@@ -58,46 +47,48 @@ const Announcements = () => {
       </div>
 
       {/* Table Section */}
-      <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
-        <table className="table w-full border-collapse border border-base-100 rounded-lg ">
-          <thead className="sticky -top-[1px] bg-base-300 z-20">
-            <tr className="text-base text-primary">
-              <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
-                #
-              </th>
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                Title
-              </th>
-              <th className="border border-base-100 px-6 py-3 min-w-96">
-                Description
-              </th>
-              <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                Date
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {announcements.map((announcement, index) => (
-              <tr
-                key={index}
-                className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
-              >
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
-                  {index + 1}
-                </td>
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                  {announcement.title}
-                </td>
-                <td className="border border-base-100 px-6 py-3">
-                  {announcement.description}
-                </td>
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
-                  {new Date(announcement.createdAt).toLocaleDateString()}
-                </td>
+      <div className="overflow-x-auto h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-200">
+        <div className="bg-base-300">
+          <table className="table w-full border-collapse border border-base-100 rounded-lg ">
+            <thead className="sticky -top-[1px] bg-base-300 z-20">
+              <tr className="text-base text-primary">
+                <th className="border border-base-100 bg-base-300 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 w-10">
+                  #
+                </th>
+                <th className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                  Title
+                </th>
+                <th className="border border-base-100 px-6 py-3 min-w-96">
+                  Description
+                </th>
+                <th className="border border-base-100 px-6 py-3 whitespace-nowrap text-center">
+                  Date
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {announcements.map((announcement, index) => (
+                <tr
+                  key={index}
+                  className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
+                >
+                  <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-200 text-center">
+                    {index + 1}
+                  </td>
+                  <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
+                    {announcement.title}
+                  </td>
+                  <td className="border border-base-100 px-6 py-3">
+                    {announcement.description}
+                  </td>
+                  <td className="border border-base-100 px-6 py-3 whitespace-nowrap text-center">
+                    {new Date(announcement.createdAt).toLocaleDateString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -63,7 +63,7 @@ const HeroSlider = () => {
           <div
             id={`slide${index + 1}`}
             key={slide.id}
-            className="carousel-item relative w-full min-h-[600px]"
+            className="carousel-item relative w-full min-h-[400px]"
           >
             <img
               src={slide.image}
@@ -79,7 +79,7 @@ const HeroSlider = () => {
                   </h2>
                   <p className="text-md">{slide.paragraph}</p>
                   <Link to="/apartment">
-                    <button className="btn btn-sm mt-4 btn-accent text-white border-none shadow-none">
+                    <button className="btn btn-sm mt-4 btn-accent text-white border-none">
                       Explore More
                     </button>
                   </Link>

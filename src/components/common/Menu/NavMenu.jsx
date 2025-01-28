@@ -2,10 +2,10 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { GoHome } from "react-icons/go";
 import { PiBuildingsBold } from "react-icons/pi";
-import { LuContactRound } from "react-icons/lu";
-import { MdOutlineAlternateEmail } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
+import { RxComponent1 } from "react-icons/rx";
+import { RiContactsLine } from "react-icons/ri";
 
 const NavMenu = () => {
   const { theme } = useContext(ThemeContext);
@@ -13,8 +13,8 @@ const NavMenu = () => {
   const links = [
     { to: "/", icon: <GoHome />, tooltip: "Home" },
     { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "Apartments" },
-    { to: "/about", icon: <LuContactRound />, tooltip: "About" },
-    { to: "/contact", icon: <MdOutlineAlternateEmail />, tooltip: "Contact"},
+    { to: "/about", icon: <RxComponent1 />, tooltip: "About" },
+    { to: "/contact", icon: <RiContactsLine />, tooltip: "Contact"},
   ];
 
   return (

@@ -38,7 +38,7 @@ const ManageMembers = () => {
   });
 
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-49px)] md:min-h-screen">
       <Helmet>
         <title>Manage Members - Edifica</title>
       </Helmet>
@@ -48,7 +48,7 @@ const ManageMembers = () => {
           Total Members: <span>{members.length}</span>
         </h2>
       </div>
-      <div className="overflow-x-auto max-h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-300">
+      <div className="overflow-x-auto h-[calc(100vh-108px)] overflow-y-auto rounded-box bg-base-200">
         <table className="table w-full border-collapse border border-base-100 rounded-lg text-center">
           <thead className="sticky -top-[1px] bg-base-300 z-20">
             <tr className="text-base text-primary">
@@ -72,7 +72,7 @@ const ManageMembers = () => {
                 key={member._id}
                 className="bg-base-200 hover:bg-base-300 transition-colors duration-300"
               >
-                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-300 text-center">
+                <td className="border border-base-100 px-6 py-3 whitespace-nowrap sticky -left-[1px] z-10 bg-base-200 text-center">
                   {index + 1}
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">

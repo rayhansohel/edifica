@@ -18,6 +18,7 @@ const AdminProfile = () => {
 
   // Use the custom hook to fetch users
   const { users } = useUsers();
+  
 
   // Filter members by their role 'member'
   const members = users?.filter((user) => user.role === "member") || [];
@@ -66,31 +67,31 @@ const AdminProfile = () => {
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">Total Rooms</h3>
-          <h1 className="text-5xl text-accent">{totalRooms}</h1>
+          <h1 className="text-3xl text-accent">{totalRooms}</h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">
             Available Rooms
           </h3>
-          <h1 className="text-5xl text-accent" >{availablePercentage.toFixed(2)}%</h1>
+          <h1 className="text-3xl text-accent" >{availablePercentage.toFixed(2)}%</h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">
             Agreement Done
           </h3>
-          <h1 className="text-5xl text-accent" >{agreementPercentage.toFixed(2)}%</h1>
+          <h1 className="text-3xl text-accent" >{agreementPercentage.toFixed(2)}%</h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">Total Users</h3>
-          <h1 className="text-5xl text-accent" >{users?.length || 0}</h1>
+          <h1 className="text-3xl text-accent" >{users?.length || 0}</h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">Total Members</h3>
-          <h1 className="text-5xl text-accent" >{members?.length || 0}</h1>
+          <h1 className="text-3xl text-accent" >{members?.length || 0}</h1>
         </div>
       </div>
     </div>
