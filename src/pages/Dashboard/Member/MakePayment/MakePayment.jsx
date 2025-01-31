@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { useAuth } from "../../../../context/AuthContext";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
+import useAxiosPublic from './../../../../hooks/useAxiosPublic';
+import { useQuery } from '@tanstack/react-query';
 
 const MakePayment = () => {
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const [agreement, setAgreement] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
@@ -26,23 +26,20 @@ const MakePayment = () => {
   const years = Array.from({ length: 10 }, (_, index) => currentYear + index);
 
   // Fetch user agreement details
-  useEffect(() => {
-    if (!user?.email) return; // Ensure email exists before making the API call
-
-    axiosPublic
-      .get(`/agreement/${user.email}`)
-      .then(({ data }) => {
-        if (data) {
-          setAgreement(data);
-        } else {
-          toast.error("No agreement data found.");
-        }
-      })
-      .catch((error) => {
+  const { data: agreement, isLoading } = useQuery({
+    queryKey: ["userAgreement", user?.email],
+    queryFn: async () => {
+      try {
+        const res = await axiosPublic.get(`/agreement/${user?.email}`);
+        return res.data;
+      } catch (error) {
         console.error("Error fetching agreement:", error);
         toast.error("Failed to fetch agreement data.");
-      });
-  }, [user?.email]);
+      }
+    },
+    enabled: !!user?.email,
+  });
+
 
   // Apply Coupon Handler
   const handleApplyCoupon = async () => {
@@ -106,8 +103,7 @@ const MakePayment = () => {
     }
   };
 
-  // Show Loading Animation if agreement data is not loaded
-  if (!agreement) {
+  if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <LoadingAnimation />

@@ -6,10 +6,11 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
+import useAxiosPublic from './../../../../hooks/useAxiosPublic';
 
 const UserProfile = () => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   // Fetch agreement details from the server
@@ -17,7 +18,7 @@ const UserProfile = () => {
     queryKey: ["userAgreement", user?.email],
     queryFn: async () => {
       try {
-        const res = await axiosSecure.get(`/agreement/${user?.email}`);
+        const res = await axiosPublic.get(`/agreement/${user?.email}`);
         return res.data;
       } catch (error) {
         return null;

@@ -34,7 +34,6 @@ const DashboardMenu = ({ closeMenu }) => {
       { to: "/dashboard/announcements", icon: <IoNotificationsOutline />, value: "Announcements" },
       { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },
       { to: "/dashboard/payment-history", icon: <MdHistory />, value: "Payment History" },
-      { to: "/dashboard/manage-coupons", icon: <MdHistory />, value: "Manage Coupon" },
     );
   }
 
