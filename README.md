@@ -1,19 +1,19 @@
-<img src="src/assets/logo/edifica-logo.png" alt="Carvex Logo" width="50px">
+<img src="src/assets/logo/edifica-logo.png" alt="Edifica Logo" width="50px">
 
 # EDIFICA
-# A Building Management System
+## A Building Management System
 
-## Project Purpose
+### Project Purpose
 This project, **Edifica**, is a comprehensive Building Management System (BMS) designed for a single building. It provides user-friendly interfaces for users, members, and administrators to manage apartments, agreements, payments, and announcements effectively.
 
-## Live Site URL
+### Live Site URL
 [Live Site](https://edificaa.netlify.app)
 
-## Admin credentials:
-**Admin Email**: hello@rayhansohel.com
+### Admin Credentials:
+**Admin Email**: hello@rayhansohel.com  
 **Admin Password**: Rayhan1234
 
-## Key Features
+### Key Features
 1. **Responsive Design**: Fully responsive and works seamlessly on mobile, tablet, and desktop devices.
 2. **Authentication System**: Email-password and social authentication (Google or GitHub).
 3. **Dynamic Navbar**: Displays user profile and dropdown for logged-in users.
@@ -34,7 +34,7 @@ This project, **Edifica**, is a comprehensive Building Management System (BMS) d
 9. **Environment Variables**: Secure handling of Firebase and API keys.
 10. **JWT Protection**: Implemented for authentication and secured private routes.
 
-## Technologies Used
+### Technologies Used
 - **React**: Front-end library.
 - **Tailwind CSS** and **DaisyUI**: Styling.
 - **React Router DOM**: Routing.
