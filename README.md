@@ -9,6 +9,10 @@ This project, **Edifica**, is a comprehensive Building Management System (BMS) d
 ## Live Site URL
 [Live Site](https://edificaa.netlify.app)
 
+## Admin credentials:
+**Admin Email**: hello@rayhansohel.com
+**Admin Password**: Rayhan1234
+
 ## Key Features
 1. **Responsive Design**: Fully responsive and works seamlessly on mobile, tablet, and desktop devices.
 2. **Authentication System**: Email-password and social authentication (Google or GitHub).
