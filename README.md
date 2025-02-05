@@ -1,4 +1,6 @@
-<img src="src/assets/logo/edifica-logo.png" alt="Edifica Logo" width="50px">
+<div align="center">
+  <img height="" src="https://github.com/rayhansohel/edifica/blob/main/src/assets/images/edifica.png"  />
+</div>
 
 # EDIFICA
 ## A Building Management System
@@ -7,7 +9,7 @@
 This project, **Edifica**, is a comprehensive Building Management System (BMS) designed for a single building. It provides user-friendly interfaces for users, members, and administrators to manage apartments, agreements, payments, and announcements effectively.
 
 ### Live Site URL
-[Live Site](https://edificaa.netlify.app)
+[Edifica](https://edificaa.netlify.app)
 
 ### Admin Credentials:
 **Admin Email**: hello@rayhansohel.com  
