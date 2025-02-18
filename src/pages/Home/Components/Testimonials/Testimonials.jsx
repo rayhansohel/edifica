@@ -19,7 +19,7 @@ const fakeTestimonials = [
   {
     id: 3,
     name: "Michael Johnson",
-    image: "https://randomuser.me/api/portraits/men/50.jpg",
+    image: "https://randomuser.me/api/portraits/men/20.jpg",
     rating: 5,
     feedback: "Amazing service! Highly recommended.",
   },
