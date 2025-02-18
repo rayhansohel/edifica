@@ -1,25 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { GoHome } from "react-icons/go";
 import { PiBuildingsBold } from "react-icons/pi";
-import { useAuth } from "../../../context/AuthContext";
-import { RiContactsLine, RiDashboardLine } from "react-icons/ri";
-import { RxComponent1 } from "react-icons/rx";
+import { LuContactRound } from "react-icons/lu";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
 
 const FooterMenu = () => {
-  const { user } = useAuth();
 
   const links = [
-    { to: "/", icon: <GoHome />, tooltip: "Home" },
-    { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "All Apartments" },
-    { to: "/about", icon: <RxComponent1 />, tooltip: "About" },
-    { to: "/contact", icon: <RiContactsLine />, tooltip: "Contact" },
+    { to: "/", icon: <GoHome />, value: "Home" },
+    { to: "/apartment", icon: <PiBuildingsBold />, value: "Apartments" },
+    { to: "/about", icon: <LuContactRound />, value: "About" },
+    { to: "/contact", icon: <MdOutlineAlternateEmail />, value: "Contact" },
   ];
-
-  // Only show Dashboard link if user exists
-  if (user) {
-    links.push({ to: "/dashboard", icon: <RiDashboardLine />, tooltip: "Dashboard" });
-  }
 
   return (
     <div>

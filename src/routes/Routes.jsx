@@ -55,7 +55,7 @@ const Routes = createBrowserRouter([
     ),
     // errorElement: <Error404 />,
     children: [
-      { path: "/dashboard", element: <Dashboard /> },
+      { index: true, element: <Dashboard />},
       // user Route
       { path: "profile", element: <UserRoute><UserProfile /></UserRoute>  },
       { path: "announcements", element: <UserRoute><Announcements /></UserRoute>},

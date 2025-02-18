@@ -4,6 +4,7 @@ import OurLocation from "./Components/ContactSection/OurLocation";
 import Hero from "./Components/Hero/Hero";
 import AvailableCoupons from "./Components/AvailableCoupon/AvailableCoupons";
 import RecentApartments from "./Components/RecentApartments/RecentApartments";
+import Testimonials from "./Components/Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <AboutBuilding />
       <RecentApartments />
       <AvailableCoupons />
+      <Testimonials />
       <OurLocation />
     </div>
   );
