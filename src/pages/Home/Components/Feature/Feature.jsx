@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Feature = () => {
   return (
-    <section className="py-8 md:py-20">
+    <section className="pb-8 md:pb-20">
       <div className="container mx-auto px-4">
         <SectionTitle
           title="Modern Living"
