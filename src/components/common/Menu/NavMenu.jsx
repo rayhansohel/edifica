@@ -14,7 +14,7 @@ const NavMenu = () => {
 
   const links = [
     { to: "/", icon: <GoHome />, tooltip: "Home" },
-    { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "Apartments" },
+    { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "All Apartments" },
     { to: "/about", icon: <RxComponent1 />, tooltip: "About" },
     { to: "/contact", icon: <RiContactsLine />, tooltip: "Contact" },
   ];

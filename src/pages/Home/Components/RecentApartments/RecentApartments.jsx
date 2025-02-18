@@ -1,48 +1,38 @@
-import { useEffect, useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
 import SectionTitle from "../../../../components/common/SectionTitle/SectionTitle";
+import useHandleAgreement from "../../../../hooks/useHandleAgreement";
+import { useQuery } from "@tanstack/react-query";
 
 const RecentApartments = () => {
-  const [apartments, setApartments] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const axiosPublic = useAxiosPublic();
+  const handleAgreement = useHandleAgreement();
 
-  useEffect(() => {
-    axiosPublic
-      .get("/featured-apartments")
-      .then((res) => {
-        if (Array.isArray(res.data)) {
-          setApartments(res.data);
-        } else {
-          setError("Unexpected response format");
-        }
-      })
-      .catch((err) => {
-        console.error("Error fetching apartments:", err);
-        setError("Failed to load apartments");
-      })
-      .finally(() => setLoading(false));
-  }, []);
+  // Fetch apartments data
+  const {
+    data: apartments,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["apartments"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/recent-apartments");
+      return res.data;
+    },
+    refetchOnWindowFocus: false,
+  });
 
   if (isLoading) return <LoadingAnimation />;
-
   if (error)
     return (
-      <div className="container mx-auto w-full ">
-        <div className="flex min-h-[calc(100vh-344px)] items-center justify-center">
-          Error loading apartments.
-        </div>
+      <div className="flex items-center justify-center">
+        Error loading apartments.
       </div>
     );
 
   return (
     <section className="pb-8 md:pb-20">
-      <SectionTitle
-        title="Featured Appartments"
-        subtitle="Choose your dreams "
-      />
+      <SectionTitle title="Appartments" subtitle="Choose your dreams " />
       <div className="container mx-auto px-4 mt-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
           {apartments?.map((apartment) => (

@@ -8,7 +8,7 @@ import { RiContactsLine, RiDashboardLine } from "react-icons/ri";
 const MainMenu = ( {closeMenu} ) => {
   const links = [
     { to: "/", icon: <GoHome />, value: "Home" },
-    { to: "/apartment", icon: <PiBuildingsBold />, value: "Apartments" },
+    { to: "/apartment", icon: <PiBuildingsBold />, value: "All Apartments" },
     { to: "/about", icon: <RxComponent1 />, value: "About" },
     { to: "/contact", icon: <RiContactsLine />, value: "Contact" },
     { to: "/dashboard", icon: <RiDashboardLine />, tooltip: "Dashboard"},
