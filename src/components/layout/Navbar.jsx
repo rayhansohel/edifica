@@ -33,11 +33,11 @@ const Navbar = () => {
 
         {/* Auth button */}
         <div className="min-w-20 flex justify-end items-center gap-2">
-          <div>
-            <AvaterButton />
-          </div>
           <div className="hidden lg:flex">
             <ThemeToggle />
+          </div>
+          <div>
+            <AvaterButton />
           </div>
         </div>
       </div>

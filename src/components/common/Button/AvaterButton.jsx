@@ -80,13 +80,7 @@ const AvatarButton = () => {
               <ul>
                 <li>
                   <Link
-                    to={
-                      isLoading
-                        ? "#" // Prevents navigation while loading
-                        : role === "admin"
-                        ? "/dashboard/admin-profile"
-                        : "/dashboard/profile"
-                    }
+                    to={"/dashboard"}
                     className="p-2 flex items-center gap-2 hover:bg-base-300 rounded-md"
                   >
                     <RiDashboardLine className="text-lg" />

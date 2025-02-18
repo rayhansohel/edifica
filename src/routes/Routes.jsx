@@ -24,6 +24,7 @@ import AdminRoute from "./AdminRoute";
 import OwnerRoute from "./OwnerRoute";
 import MemberRoute from "./memberRoute";
 import UserRoute from "./userRoute";
+import Dashboard from "../pages/Dashboard/Dashboard";
 
 const Routes = createBrowserRouter([
   {
@@ -54,6 +55,7 @@ const Routes = createBrowserRouter([
     ),
     errorElement: <Error404 />,
     children: [
+      { path: "/dashboard", element: <Dashboard /> },
       // user Route
       { path: "profile", element: <UserRoute><UserProfile /></UserRoute>  },
       { path: "announcements", element: <UserRoute><Announcements /></UserRoute>},

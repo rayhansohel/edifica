@@ -10,7 +10,12 @@ const useUsers = () => {
       const res = await axiosPublic.get("/users");
       return res.data;
     },
+    refetchOnWindowFocus: true,
+    staleTime: 1000 * 60, 
   });
+
+
+  refetch();
 
   return {
     users: data,
@@ -21,3 +26,4 @@ const useUsers = () => {
 };
 
 export default useUsers;
+

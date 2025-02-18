@@ -6,7 +6,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
-import useAxiosPublic from './../../../../hooks/useAxiosPublic';
+import useAxiosPublic from "./../../../../hooks/useAxiosPublic";
 
 const UserProfile = () => {
   const { user } = useAuth();
@@ -33,7 +33,9 @@ const UserProfile = () => {
     email: user?.email || "user@example.com",
     profilePicture: user?.photoURL || ProfilePlaceholder,
     agreementStatus: agreementData?.status || "Not Available",
-    agreementDate: agreementData?.date || "Not Available",
+    agreementDate: agreementData?.approvedAt
+      ? new Date(agreementData.approvedAt).toLocaleDateString()
+      : "Not Available",
     apartmentInfo: {
       floor: agreementData?.floorNo || "Not Available",
       block: agreementData?.blockName || "Not Available",
@@ -63,15 +65,36 @@ const UserProfile = () => {
 
         <div className="bg-base-200 px-8 py-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Agreement Information</h3>
-          <h3>Accept Status: <span className="text-accent">{profileData.agreementStatus}</span></h3>
-          <h3>Accept Date: <span className="text-accent">{profileData.agreementDate}</span></h3>
+          <h3>
+            Accept Status:{" "}
+            <span className="text-accent">{profileData.agreementStatus}</span>
+          </h3>
+          <h3>
+            Accept Date:{" "}
+            <span className="text-accent">{profileData.agreementDate}</span>
+          </h3>
         </div>
 
         <div className="bg-base-200 px-8 py-4 rounded-box col-span-1">
           <h3 className="text-lg font-semibold mb-2">Apartment Information</h3>
-          <h3>Floor: <span className="text-accent">{profileData.apartmentInfo.floor}</span></h3>
-          <h3>Block: <span className="text-accent">{profileData.apartmentInfo.block}</span></h3>
-          <h3>Room: <span className="text-accent">{profileData.apartmentInfo.roomNo}</span></h3>
+          <h3>
+            Floor:{" "}
+            <span className="text-accent">
+              {profileData.apartmentInfo.floor}
+            </span>
+          </h3>
+          <h3>
+            Block:{" "}
+            <span className="text-accent">
+              {profileData.apartmentInfo.block}
+            </span>
+          </h3>
+          <h3>
+            Room:{" "}
+            <span className="text-accent">
+              {profileData.apartmentInfo.roomNo}
+            </span>
+          </h3>
         </div>
       </div>
 

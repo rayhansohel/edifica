@@ -18,7 +18,6 @@ const AdminProfile = () => {
 
   // Use the custom hook to fetch users
   const { users } = useUsers();
-  
 
   // Filter members by their role 'member'
   const members = users?.filter((user) => user.role === "member") || [];
@@ -33,16 +32,17 @@ const AdminProfile = () => {
   });
 
   // Calculate available rooms percentage
+  // Calculate available rooms percentage
   const availableRooms = apartments?.filter(
-    (apartment) => apartment.availability === "available"
+    (apartment) => apartment.availability === true
   ).length;
   const totalRooms = apartments?.length;
   const availablePercentage =
     totalRooms > 0 ? (availableRooms / totalRooms) * 100 : 0;
 
-  // Percentage of agreements (assuming there's an `agreementStatus` field)
+  // Percentage of agreements (assuming availability false means rented)
   const agreementsDone = apartments?.filter(
-    (apartment) => apartment.availability === "rented"
+    (apartment) => apartment.availability === false
   ).length;
   const agreementPercentage =
     totalRooms > 0 ? (agreementsDone / totalRooms) * 100 : 0;
@@ -71,27 +71,27 @@ const AdminProfile = () => {
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
-          <h3 className="text-lg font-semibold mb-2">
-            Available Rooms
-          </h3>
-          <h1 className="text-3xl text-accent" >{availablePercentage.toFixed(2)}%</h1>
+          <h3 className="text-lg font-semibold mb-2">Available Rooms</h3>
+          <h1 className="text-3xl text-accent">
+            {availablePercentage.toFixed(2)}%
+          </h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
-          <h3 className="text-lg font-semibold mb-2">
-            Agreement Done
-          </h3>
-          <h1 className="text-3xl text-accent" >{agreementPercentage.toFixed(2)}%</h1>
+          <h3 className="text-lg font-semibold mb-2">Agreement Done</h3>
+          <h1 className="text-3xl text-accent">
+            {agreementPercentage.toFixed(2)}%
+          </h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">Total Users</h3>
-          <h1 className="text-3xl text-accent" >{users?.length || 0}</h1>
+          <h1 className="text-3xl text-accent">{users?.length || 0}</h1>
         </div>
 
         <div className="bg-base-200 p-4 rounded-box min-h-40 flex gap-4 flex-col items-center justify-center text-center">
           <h3 className="text-lg font-semibold mb-2">Total Members</h3>
-          <h1 className="text-3xl text-accent" >{members?.length || 0}</h1>
+          <h1 className="text-3xl text-accent">{members?.length || 0}</h1>
         </div>
       </div>
     </div>

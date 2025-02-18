@@ -3,9 +3,11 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const AgreementRequests = () => {
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   // Fetch only pending agreement requests
   const {
@@ -22,26 +24,35 @@ const AgreementRequests = () => {
   });
 
   // Accept request mutation
-  const acceptRequest = useMutation({
-    mutationFn: async (email) => {
-      await axiosSecure.patch(`/agreement?email=${email}`, {
-        status: "done",
-      });
+const acceptRequest = useMutation({
+  mutationFn: async (email, id) => {
+    const response = await axiosSecure.patch(`/agreement?email=${email}`, {
+      status: "done",
+      approvedAt: new Date().toISOString(),
+      approvedBy: "admin@example.com",
+    });
+
+    if (response.status === 200) {
       await axiosSecure.patch(`/users/role?email=${email}`, { role: "member" });
-    },
-    onSuccess: () => {
-      toast.success("Request accepted and user role updated to 'member'.");
-      refetch();
-    },
-    onError: () => {
-      toast.error("Failed to accept the request.");
-    },
-  });
+      await axiosPublic.patch(`/apartment/${id}`, { availability: false });
+    }
+  },
+  onSuccess: () => {
+    toast.success("Request accepted and stored in the database.");
+    refetch();
+  },
+  onError: () => {
+    toast.error("Failed to accept the request.");
+  },
+});
+
 
   // Reject request mutation
   const rejectRequest = useMutation({
-    mutationFn: async (email) => {
+    mutationFn: async (email, id) => {
       await axiosSecure.delete(`/agreement?email=${email}`);
+      await axiosSecure.patch(`/users/role?email=${email}`, { role: "user" });
+      await axiosPublic.patch(`/apartment/${id}`, { availability: true });
     },
     onSuccess: () => {
       toast.success("Agreement deleted successfully.");
@@ -146,14 +157,14 @@ const AgreementRequests = () => {
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   <button
-                    onClick={() => acceptRequest.mutate(request.userEmail)}
+                    onClick={() => acceptRequest.mutate(request.userEmail, request.apartmentId)}
                     className="btn btn-sm btn-success mr-2"
-                    disabled={request.status === "accepted"}
+                    disabled={request.status === "done"}
                   >
                     Accept
                   </button>
                   <button
-                    onClick={() => rejectRequest.mutate(request.userEmail)}
+                    onClick={() => rejectRequest.mutate(request.userEmail, request.apartmentId)}
                     className="btn btn-sm btn-secondary"
                   >
                     Reject

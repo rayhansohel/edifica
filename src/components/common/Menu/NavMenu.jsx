@@ -5,17 +5,24 @@ import { PiBuildingsBold } from "react-icons/pi";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../../context/ThemeContext";
 import { RxComponent1 } from "react-icons/rx";
-import { RiContactsLine } from "react-icons/ri";
+import { RiContactsLine, RiDashboardLine } from "react-icons/ri";
+import { useAuth } from "../../../context/AuthContext";
 
 const NavMenu = () => {
   const { theme } = useContext(ThemeContext);
+  const { user } = useAuth();
 
   const links = [
     { to: "/", icon: <GoHome />, tooltip: "Home" },
     { to: "/apartment", icon: <PiBuildingsBold />, tooltip: "Apartments" },
     { to: "/about", icon: <RxComponent1 />, tooltip: "About" },
-    { to: "/contact", icon: <RiContactsLine />, tooltip: "Contact"},
+    { to: "/contact", icon: <RiContactsLine />, tooltip: "Contact" },
   ];
+
+  // Only show Dashboard link if user exists
+  if (user) {
+    links.push({ to: "/dashboard", icon: <RiDashboardLine />, tooltip: "Dashboard" });
+  }
 
   return (
     <div className="space-x-6 flex items-center">

@@ -8,10 +8,10 @@ import useUsers from "../../../../hooks/useUsers";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
-  
+
   // Use the custom hook to fetch users
   const { users, isError, error, refetch } = useUsers();
-  
+
   // Filter members by their role 'member'
   const members = users?.filter((user) => user.role === "member") || [];
 
@@ -24,18 +24,21 @@ const ManageMembers = () => {
 
   // Handle remove member
   const removeMember = useMutation({
-    mutationFn: async ({ id, name }) => {
-      await axiosSecure.patch(`/users/role/${id}`, { role: "user" });
-      return name;
+    mutationFn: async ({ email, id }) => {
+      await axiosSecure.delete(`/agreement?email=${email}`);
+      await axiosSecure.patch(`/users/role?email=${email}`, { role: "user" });
+      await axiosSecure.patch(`/apartment/${id}`, { availability: true });
     },
-    onSuccess: (name) => {
+    onSuccess: () => {
+      toast.success("Removed from members successfully.");
       refetch();
-      toast.success(`${name} removed from members successfully.`);
     },
-    onError: () => {
-      toast.error("Failed to remove member.");
+    onError: (error) => {
+      console.error("Error removing member:", error);
+      toast.error(`Failed to remove member: ${error.response?.data?.message || "Unknown error"}`);
     },
   });
+  
 
   return (
     <div className="p-4 flex flex-col gap-4 min-h-[calc(100vh-49px)] md:min-h-screen">
@@ -83,12 +86,17 @@ const ManageMembers = () => {
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   <button
-                    onClick={() =>
-                      removeMember.mutate({ id: member._id, name: member.name })
-                    }
+                    onClick={() => removeMember.mutate({ email: member.email })}
                     className="w-full"
+                    disabled={removeMember.isLoading}
                   >
-                    <div className="hover:text-rose-800 text-2xl flex items-center justify-center">
+                    <div
+                      className={`text-2xl flex items-center justify-center ${
+                        removeMember.isLoading
+                          ? "opacity-50"
+                          : "hover:text-rose-800"
+                      }`}
+                    >
                       <MdOutlineDeleteForever />
                     </div>
                   </button>
