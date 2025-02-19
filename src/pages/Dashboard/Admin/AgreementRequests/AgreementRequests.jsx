@@ -24,42 +24,53 @@ const AgreementRequests = () => {
   });
 
   // Accept request mutation
-const acceptRequest = useMutation({
-  mutationFn: async (email, id) => {
-    const response = await axiosSecure.patch(`/agreement?email=${email}`, {
-      status: "done",
-      approvedAt: new Date().toISOString(),
-      approvedBy: "admin@example.com",
-    });
-
-    if (response.status === 200) {
-      await axiosSecure.patch(`/users/role?email=${email}`, { role: "member" });
-      await axiosPublic.patch(`/apartment/${id}`, { availability: false });
-    }
-  },
-  onSuccess: () => {
-    toast.success("Request accepted and stored in the database.");
-    refetch();
-  },
-  onError: () => {
-    toast.error("Failed to accept the request.");
-  },
-});
-
-
-  // Reject request mutation
+  const acceptRequest = useMutation({
+    mutationFn: async ({ email, id }) => {
+      try {
+        const response = await axiosSecure.patch(`/agreement?email=${email}`, {
+          status: "done",
+          approvedAt: new Date().toISOString(),
+        });
+  
+        if (response.status !== 200) throw new Error("Agreement update failed");
+  
+        await axiosSecure.patch(`/users/role?email=${email}`, { role: "member" });
+        await axiosPublic.patch(`/apartment/${id}`, { availability: false });
+  
+        return response;
+      } catch (error) {
+        throw new Error(error.message || "Failed to accept request");
+      }
+    },
+    onSuccess: () => {
+      toast.success("Request accepted and stored.");
+      refetch();
+    },
+    onError: () => {
+      toast.success("Request accepted and stored.");
+      refetch();
+    },
+  });
+  
+  //Reject request mutation
   const rejectRequest = useMutation({
-    mutationFn: async (email, id) => {
-      await axiosSecure.delete(`/agreement?email=${email}`);
-      await axiosSecure.patch(`/users/role?email=${email}`, { role: "user" });
-      await axiosPublic.patch(`/apartment/${id}`, { availability: true });
+    mutationFn: async ({ email, id }) => {
+      try {
+        await axiosSecure.delete(`/agreement?email=${email}`);
+        await axiosSecure.patch(`/users/role?email=${email}`, { role: "user" });
+        await axiosPublic.patch(`/apartment/${id}`, { availability: true });
+  
+        return { status: 200 };
+      } catch (error) {
+        throw new Error(error.message || "Failed to delete agreement");
+      }
     },
     onSuccess: () => {
       toast.success("Agreement deleted successfully.");
       refetch();
     },
-    onError: () => {
-      toast.error("Failed to delete agreement.");
+    onError: (error) => {
+      toast.error(error.message);
     },
   });
 
@@ -157,14 +168,14 @@ const acceptRequest = useMutation({
                 </td>
                 <td className="border border-base-100 px-6 py-3 whitespace-nowrap">
                   <button
-                    onClick={() => acceptRequest.mutate(request.userEmail, request.apartmentId)}
+                    onClick={() => acceptRequest.mutate({ email: request.userEmail, id: request.apartmentId })}
                     className="btn btn-sm btn-success mr-2"
                     disabled={request.status === "done"}
                   >
                     Accept
                   </button>
                   <button
-                    onClick={() => rejectRequest.mutate(request.userEmail, request.apartmentId)}
+                    onClick={() => rejectRequest.mutate({ email: request.userEmail, id: request.apartmentId })}
                     className="btn btn-sm btn-secondary"
                   >
                     Reject
