@@ -5,8 +5,29 @@ import { FiMapPin } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { FaHeadphonesAlt } from "react-icons/fa";
 import SocialLinks from "../common/SocialLinks/SocialLinks";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const axiosPublic = useAxiosPublic();
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      toast.error("Please enter a valid email.");
+      return;
+    }
+
+    try {
+      const response = await axiosPublic.post("/subscribe", { email });
+      toast.success(response.data.message);
+      setEmail("");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong.");
+    }
+  };
+
   return (
     <div className="min-h-20 bg-secondary border-t border-base-300 pt-8">
       <div className="container mx-auto px-4">
@@ -59,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div className="border border-base-300 p-6 rounded-box">
-            <h3 className="uppercase mb-3">Newsleter</h3>
+            <h3 className="uppercase mb-3">Newsletter</h3>
             <p>
               Subscribe to our newsletter and stay updated with the property
               insights delivered straight to your inbox.
@@ -68,9 +89,14 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full p-2 input-sm rounded-l-md focus:outline-none bg-base-300"
               />
-              <button className="bg-purple-700 hover:bg-purple-800 text-white px-6 rounded-r-md">
+              <button
+                onClick={handleSubscribe}
+                className="bg-purple-700 hover:bg-purple-800 text-white px-6 rounded-r-md"
+              >
                 Subscribe
               </button>
             </div>
