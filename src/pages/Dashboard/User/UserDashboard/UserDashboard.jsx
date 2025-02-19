@@ -6,9 +6,9 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from "../../../../components/common/Loading/LoadingAnimation";
-import useAxiosPublic from "./../../../../hooks/useAxiosPublic";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
-const UserProfile = () => {
+const UserDashboard = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ const UserProfile = () => {
   return (
     <div className="flex flex-col min-h-[calc(100vh-49px)] md:min-h-screen space-y-4 p-4">
       <Helmet>
-        <title>Profile - Edifica</title>
+        <title>Dashboard - Edifica</title>
       </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="flex gap-4 items-center bg-base-200 px-8 py-4 rounded-box md:col-span-2">
@@ -139,4 +139,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserDashboard;

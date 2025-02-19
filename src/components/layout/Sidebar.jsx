@@ -45,7 +45,7 @@ const Sidebar = () => {
               }}
             />
           </Link>
-          <LogoutButton />
+          <ThemeToggle />
         </div>
       </div>
       <hr className="border-base-300 mx-4" />
@@ -60,7 +60,7 @@ const Sidebar = () => {
         <hr className="border-base-300 mx-4" />
         <div className="flex justify-between items-center w-full p-4">
           <UserCard />
-          <ThemeToggle />
+          <LogoutButton />
         </div>
       </div>
     </div>

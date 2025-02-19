@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { TbCalendarDollar } from "react-icons/tb";
 import { MdHistory } from "react-icons/md";
 import { IoNewspaperOutline, IoNotificationsOutline } from "react-icons/io5";
-import { RiPoliceBadgeLine, RiUserSettingsLine } from "react-icons/ri";
+import { RiDashboardLine, RiPoliceBadgeLine, RiUserSettingsLine } from "react-icons/ri";
 import { LiaUserShieldSolid } from "react-icons/lia";
 import { BiUser } from "react-icons/bi";
 import { PiNotePencilDuotone } from "react-icons/pi";
@@ -22,6 +22,7 @@ const DashboardMenu = ({ closeMenu }) => {
   // User-specific links
   if (role === "user") {
     links.push(
+      { to: "/dashboard/user", icon: <RiDashboardLine />, value: "Dashboard" },
       { to: "/dashboard/profile", icon: <BiUser />, value: "My Profile" },
       { to: "/dashboard/announcements", icon: <IoNotificationsOutline />, value: "Announcements" },
     );
@@ -30,6 +31,7 @@ const DashboardMenu = ({ closeMenu }) => {
   // Member-specific links
   if (role === "member") {
     links.push(
+      { to: "/dashboard/user", icon: <RiDashboardLine />, value: "Dashboard" },
       { to: "/dashboard/profile", icon: <BiUser />, value: "My Profile" },
       { to: "/dashboard/announcements", icon: <IoNotificationsOutline />, value: "Announcements" },
       { to: "/dashboard/make-payment", icon: <TbCalendarDollar />, value: "Make Payment" },
@@ -40,7 +42,8 @@ const DashboardMenu = ({ closeMenu }) => {
   // Admin-specific links
   if (role === "admin") {
     links.push(
-      { to: "/dashboard/admin-profile", icon: <LiaUserShieldSolid />, value: "My Profile" },
+      { to: "/dashboard/admin", icon: <RiDashboardLine />, value: "Dashboard" },
+      { to: "/dashboard/profile", icon: <BiUser />, value: "My Profile" },
       { to: "/dashboard/manage-member", icon: <RiPoliceBadgeLine />, value: "Manage Member" },
       { to: "/dashboard/make-announcement", icon: <PiNotePencilDuotone />, value: "Make Announcement" },
       { to: "/dashboard/manage-coupons", icon: <MdHistory />, value: "Manage Coupon" },

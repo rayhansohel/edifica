@@ -12,11 +12,10 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import Announcements from "../pages/Dashboard/User/Announcements/Announcements";
 import ManageMembers from "../pages/Dashboard/Admin/ManageMember/ManageMember";
-import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile";
+import UserDashboard from "../pages/Dashboard/User/UserDashboard/UserDashboard";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests/AgreementRequests";
 import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons";
-import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
 import MakePayment from "../pages/Dashboard/Member/MakePayment/MakePayment";
 import PaymentHistory from '../pages/Dashboard/Member/PaymentHistory/PaymentHistory';
 import ManageUser from "../pages/Dashboard/Owner/ManageUser";
@@ -24,13 +23,15 @@ import AdminRoute from "./AdminRoute";
 import OwnerRoute from "./OwnerRoute";
 import MemberRoute from "./memberRoute";
 import UserRoute from "./userRoute";
-import Dashboard from "../pages/Dashboard/Dashboard";
+import Dashboard from "../pages/Dashboard/UserProfile";
+import AdminDashboard from "../pages/Dashboard/Admin/AdminDashboard/AdminDashboard";
+import UserProfile from "../pages/Dashboard/UserProfile";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
       { index: true, element: <Home /> },
       { path: "apartment", element: <Apartment /> },
@@ -53,17 +54,17 @@ const Routes = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
-    // errorElement: <Error404 />,
+    errorElement: <Error404 />,
     children: [
-      { index: true, element: <Dashboard />},
+      { path: "profile", element: <UserProfile />},
       // user Route
-      { path: "profile", element: <UserRoute><UserProfile /></UserRoute>  },
+      { path: "user", element: <UserRoute><UserDashboard /></UserRoute>  },
       { path: "announcements", element: <UserRoute><Announcements /></UserRoute>},
       // member Route
       { path: "make-payment", element: <MemberRoute><MakePayment /></MemberRoute> },
       { path: "payment-history", element: <MemberRoute><PaymentHistory /></MemberRoute> },
       // admin Route
-      { path: "admin-profile", element: <AdminRoute>< AdminProfile /></AdminRoute> },
+      { path: "admin", element: <AdminRoute><AdminDashboard /></AdminRoute> },
       { path: "manage-member", element: <AdminRoute><ManageMembers /></AdminRoute> },
       { path: "make-announcement", element: <AdminRoute><MakeAnnouncement /></AdminRoute> },
       { path: "agreement-requests", element: <AdminRoute><AgreementRequests /></AdminRoute> },

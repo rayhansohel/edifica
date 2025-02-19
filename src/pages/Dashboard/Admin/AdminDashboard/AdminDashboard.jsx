@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUsers from "../../../../hooks/useUsers";
 
-const AdminProfile = () => {
+const AdminDashboard = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
@@ -50,7 +50,7 @@ const AdminProfile = () => {
   return (
     <div className="flex flex-col min-h-[calc(100vh-49px)] md:min-h-screen space-y-4 p-4">
       <Helmet>
-        <title>Profile - Edifica</title>
+        <title>Dashboard - Edifica</title>
       </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 h-full">
         <div className="flex gap-4 flex-col items-center justify-center text-center bg-base-200 p-4 rounded-box min-h-40">
@@ -98,4 +98,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile;
+export default AdminDashboard;
