@@ -14,6 +14,7 @@ const LoginForm = () => {
   const from = location.state?.from?.pathname || "/";
 
   const emailRef = useRef();
+  const passwordRef = useRef();
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -70,12 +71,28 @@ const LoginForm = () => {
       });
   };
 
+  const fillAdminCredentials = () => {
+    if (emailRef.current && passwordRef.current) {
+      emailRef.current.value = "hello@rayhansohel.com";
+      passwordRef.current.value = "Rayhan1234";
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center justify-center min-w-96">
         <SocialLogin onSuccess={handleGoogleSignInSuccess} />
         <div className="flex w-full flex-col px-9 mt-4 -mb-4">
           <div className="divider">OR</div>
+        </div>
+        <div className="form-control mt-8 min-w-48">
+          <button
+            type="button"
+            className="btn btn-sm bg-base-100 border-base-300 hover:bg-base-300 shadow-none"
+            onClick={fillAdminCredentials}
+          >
+            Admin Credentials
+          </button>
         </div>
         <form onSubmit={handleSubmit} className="card-body w-full space-y-2">
           <div className="form-control">
@@ -95,6 +112,7 @@ const LoginForm = () => {
             <input
               type={showPassword ? "text" : "password"}
               name="password"
+              ref={passwordRef}
               placeholder="Enter your password"
               className="input input-sm input-bordered text-xs font-semibold focus:outline-none border-none rounded-md bg-base-300"
               required
