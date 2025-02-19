@@ -14,7 +14,7 @@ const AvatarButton = () => {
   const dropdownRef = useRef(null);
 
   // Fetch user role from custom hook
-  const { data: role, isLoading } = useUserRole(); // Assuming `useUserRole` returns { data, isLoading }
+  const { data: role, isLoading } = useUserRole();
 
   useEffect(() => {
     const auth = getAuth();

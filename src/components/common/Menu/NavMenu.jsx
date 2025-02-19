@@ -7,10 +7,12 @@ import ThemeContext from "../../../context/ThemeContext";
 import { RxComponent1 } from "react-icons/rx";
 import { RiContactsLine, RiDashboardLine } from "react-icons/ri";
 import { useAuth } from "../../../context/AuthContext";
+import useUserRole from "../../../hooks/useUserRole";
 
 const NavMenu = () => {
   const { theme } = useContext(ThemeContext);
   const { user } = useAuth();
+  const { data: role, isLoading } = useUserRole();
 
   const links = [
     { to: "/", icon: <GoHome />, tooltip: "Home" },
@@ -21,7 +23,15 @@ const NavMenu = () => {
 
   // Only show Dashboard link if user exists
   if (user) {
-    links.push({ to: "/dashboard", icon: <RiDashboardLine />, tooltip: "Dashboard" });
+    links.push({
+      to: isLoading
+        ? "#"
+        : role === "admin"
+        ? "/dashboard/admin"
+        : "/dashboard/user",
+      icon: <RiDashboardLine />,
+      value: "Dashboard",
+    });
   }
 
   return (

@@ -4,7 +4,6 @@ import { TbCalendarDollar } from "react-icons/tb";
 import { MdHistory } from "react-icons/md";
 import { IoNewspaperOutline, IoNotificationsOutline } from "react-icons/io5";
 import { RiDashboardLine, RiPoliceBadgeLine, RiUserSettingsLine } from "react-icons/ri";
-import { LiaUserShieldSolid } from "react-icons/lia";
 import { BiUser } from "react-icons/bi";
 import { PiNotePencilDuotone } from "react-icons/pi";
 import useUserRole from "../../../hooks/useUserRole";

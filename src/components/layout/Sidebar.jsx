@@ -4,7 +4,6 @@ import ThemeToggle from "../common/ThemeToggle/ThemeToggle";
 import LogoutButton from "../common/Button/LogoutButton";
 import UserCard from "../common/Card/UserCard";
 import DashboardMenu from "../common/Menu/DashboardMenu";
-import MainMenu from "../common/Menu/MainMenu";
 import { GoHome } from "react-icons/go";
 import { Tooltip } from "react-tooltip";
 import ThemeContext from "../../context/ThemeContext";
